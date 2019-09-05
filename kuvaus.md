@@ -6,7 +6,7 @@ Sovelluksen toinen käyttäjäryhmä ovat liikuntakeskukset/seurat, joilla on va
 
 Toimintoja: 
 * Kirjautuminen
-* Liikuntakeskusten haku eri kriteereinn
+* Liikuntakeskusten haku eri kriteerein
 * Arvostelujen lähettäminen ja poistaminen
 * Muiden käyttäjien arvostelujen lukeminen
 * Liikuntakeskusten, lajien, ajankohdan ja tagien lisäys, muokkaus ja poisto
