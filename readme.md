@@ -11,3 +11,5 @@ Toimintoja:
 * Muiden käyttäjien arvostelujen lukeminen
 * Liikuntakeskusten, lajien, ajankohdan ja tagien lisäys, muokkaus ja poisto
 
+[Tietokantakaavio](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/tietokantakaavio.png)
+
