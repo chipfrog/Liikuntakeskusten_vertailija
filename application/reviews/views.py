@@ -19,8 +19,6 @@ def reviews_update(review_id):
 
     return redirect(url_for("reviews_index"))
 
-
-
 @app.route("/reviews/", methods=["POST"])
 def reviews_create():
     grade = request.form.get("grade")
