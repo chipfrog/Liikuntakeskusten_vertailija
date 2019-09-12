@@ -2,6 +2,11 @@
 Alla kuvatuissa käyttötapauksissa puhutaan harrastajista ja omistajista. Harrastajalla tarkoitetaan "tavallista" käyttäjää, joka voi kirjoittaa arvosteluja ja hakea liikuntakeskuksia tietokannasta.
 Omistajalla puolestaan tarkoitetaan käyttäjää, esim. liikuntakeskuksen henkilökuntaan kuuluvaa henkilöä, jolla on oikeus muokata "omistamansa" liikuntakeskuksen tietoja. Käyttäjällä tarkoitetaan mihin tahansa käyttäjäryhmään kuuluvaa henkilöä.
 
+### Kirjautuminen ja käyttäjät
+* Käyttäjänä pääsen luomaan itselleni sovellukseen profiilin, johon kuuluu käyttäjästatus (harrastaja tai omistaja), sekä uniikki käyttäjätunnus. Profiilin luomisen jälkeen pääsen käyttämään sovelluksen muita toimintoja kirjautumalla sisään.   
+* Harrastajana voin kirjautua sivulle henkilökohtaisella käyttäjätunnuksellani. Sovelluksen normaalin toiminnallisuuden lisäksi (arvostelujen antaminen, liikuntakeskusten haku) pääsen käsiksi personoituun näkymään, josta näen kaikki antamani arvostelut ja voin muokata omia tietojani. 
+* Omistajana voin kirjautua sivulle henkilökohtaisella käyttäjätunnuksellani. Liikuntakeskusten haun ja arvostelujen tarkastelun lisäksi pääsen näkymään, jossa voin muokata hallinnoimani liikuntakeskuksen tietoja.
+
 ### Liikuntakeskusten hakeminen
 * Käyttäjänä voin hakea liikuntakeskuksia eri kriteerien perusteella. Hakunäkymässä on omat kenttänsä liikuntakeskuksen nimelle, lajeille ja kuukausimaksulle. Mitä useamman kentän täytän, sitä tarkemmin rajattuja tuloksia saan. Voin esimerkiksi etsiä liikuntakeskusta, jonka kuukausimaksu on maksimissaan 60€, ja jossa voi harrastaa nyrkkeilyä. Sovellus listaa kaikki ehdot täyttävät keskukset tai kertoo ettei sellaisia löytynyt. 
 
