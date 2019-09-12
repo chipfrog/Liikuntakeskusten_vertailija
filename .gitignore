@@ -124,6 +124,7 @@ dmypy.json
 .pyre/
 
 # other
+reviews.db
 users.db
 .vscode/
 
