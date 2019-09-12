@@ -12,3 +12,5 @@ Toimintoja:
 * Liikuntakeskusten, lajien, ajankohdan ja tagien lisäys, muokkaus ja poisto
 
 [Tietokantakaavio](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/tietokantakaavio.png)
+
+[Heroku-sovellus](https://liikuntakeskusten-vertailija.herokuapp.com) 
