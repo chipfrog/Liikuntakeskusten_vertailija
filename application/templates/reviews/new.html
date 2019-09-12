@@ -4,10 +4,10 @@
 
 <form method="POST" action="{{ url_for('reviews_create') }}">
     <p>
-        <input type="number" name="grade"/>
+        <input type="number" name="grade" placeholder="Insert grade (numeric)"/>
     </p>
     <p>
-        <textarea rows="10" cols="50" name="review"></textarea>
+        <textarea rows="10" cols="50" name="review" placeholder="Write your review here"></textarea>
         <!-- <input type="text" name="review"/> -->
     </p>
     <p>
