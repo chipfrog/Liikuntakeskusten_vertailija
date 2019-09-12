@@ -1,12 +1,11 @@
 from application import db
 
-class User(db.Model):
+class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(144), nullable=False)
     grade = db.Column(db.Integer, nullable=False)
+    review = db.Column(db.String(1000), nullable=False)
     
-    def __init__(self, name, grade):
-        self.name = name
+    def __init__(self, grade, review):
         self.grade = grade
+        self.review = review
         
-    

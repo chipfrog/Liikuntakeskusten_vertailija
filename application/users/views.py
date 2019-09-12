@@ -12,7 +12,10 @@ def users_form():
 
 @app.route("/users/", methods=["POST"])
 def users_create():
-    u = User(request.form.get("name"))
+    nimi = request.form.get("name")
+    numero = request.form.get("grade")
+    # u = User(request.form.get("name"))
+    u = User(name=nimi, grade=numero)
 
     db.session().add(u)
     db.session().commit()

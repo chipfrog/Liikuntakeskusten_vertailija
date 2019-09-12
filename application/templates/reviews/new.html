@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form method="POST" action="{{ url_for('reviews_create') }}">
+    <p>
+        <input type="number" name="grade"/>
+    </p>
+    <p>
+        <textarea rows="10" cols="50" name="review"></textarea>
+        <!-- <input type="text" name="review"/> -->
+    </p>
+    <p>
+        <input type="submit" value="Add a new review"/>
+    </p>
+
+</form>
+
+{% endblock %}
