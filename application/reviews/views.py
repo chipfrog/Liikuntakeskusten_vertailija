@@ -1,6 +1,7 @@
 from application import app, db
 from flask import render_template, request, redirect, url_for
 from application.reviews.models import Review
+from application.reviews.forms import ReviewForm
 
 @app.route("/reviews", methods=["GET"])
 def reviews_index():
@@ -8,7 +9,7 @@ def reviews_index():
 
 @app.route("/reviews/new/")
 def reviews_form():
-    return render_template("reviews/new.html")
+    return render_template("reviews/new.html", form = ReviewForm())
 
 @app.route("/reviews/<review_id>/", methods=["POST"])
 def reviews_update(review_id):
@@ -21,10 +22,12 @@ def reviews_update(review_id):
 
 @app.route("/reviews/", methods=["POST"])
 def reviews_create():
-    grade = request.form.get("grade")
-    review = request.form.get("review")
-    
-    r = Review(grade, review)
+    form = ReviewForm(request.form)
+
+    if not form.validate():
+        return render_template("reviews/new.html", form=form)
+
+    r = Review(form.grade.data, form.review.data)
 
     db.session().add(r)
     db.session().commit()

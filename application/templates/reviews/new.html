@@ -1,19 +1,42 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
 <form method="POST" action="{{ url_for('reviews_create') }}">
-    <p>
-        <input type="number" name="grade" placeholder="Insert grade (numeric)"/>
-    </p>
-    <p>
-        <textarea rows="10" cols="50" name="review" placeholder="Write your review here"></textarea>
-        <!-- <input type="text" name="review"/> -->
-    </p>
-    <p>
-        <input type="submit" value="Add a new review"/>
-    </p>
+  <table>
+    <tr>
+      <td>
+        {{ form.grade.label}}  
+      </td>
+      <td>
+        {{ form.grade(type="number", placeholder="Insert grade") }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.grade.errors %}
+          <li>{{ error }}</li> 
+          {% endfor %} 
+        </ul>  
+      </td>    
+    </tr>
+    <tr>
+      <td>
+        {{ form.review.label }}  
+      </td>
+      <td>
+        {{ form.review(rows="10", cols="40", placeholder="Write your review here") }}  
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Add a new review"/>  
+      </td>   
+    </tr>
+  </table>
+    
+    
+    <!-- <p><input type="number" name="grade" placeholder="Insert grade (numeric)"/></p> -->
+    <!-- <p><textarea rows="10" cols="50" name="review" placeholder="Write your review here"></textarea></p>
+    <p><input type="submit" value="Add a new review"/></p> -->
 
 </form>
-
 {% endblock %}
