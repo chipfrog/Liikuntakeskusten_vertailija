@@ -1,13 +1,14 @@
 from application import app, db
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application.reviews.models import Review
 from application.reviews.forms import ReviewForm
 
 @app.route("/reviews", methods=["GET"])
+@login_required
 def reviews_index():
-    return render_template("reviews/list.html", reviews = Review.query.all())
+    return render_template("reviews/list.html", reviews = Review.query.filter_by(account_id = current_user.id))
 
 @app.route("/reviews/new/")
 @login_required
@@ -49,6 +50,7 @@ def reviews_create():
         return render_template("reviews/new.html", form=form)
 
     r = Review(form.grade.data, form.review.data)
+    r.account_id = current_user.id
 
     db.session().add(r)
     db.session().commit()
