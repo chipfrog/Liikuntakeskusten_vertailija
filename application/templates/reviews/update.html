@@ -25,6 +25,9 @@
     </tr>
   </table>
 </form>
+<form method="POST" action="{{ url_for('reviews_delete', review_id=review_id) }}">
+  <input type="submit" value="Delete"/>
+</form>
 {% endblock %}
 
 

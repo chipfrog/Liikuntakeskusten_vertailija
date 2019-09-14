@@ -56,3 +56,12 @@ def reviews_create():
     db.session().commit()
 
     return redirect(url_for("reviews_index"))
+
+@app.route("/reviews/delete/<review_id>/", methods=["POST"])
+@login_required
+def reviews_delete(review_id):
+    r = Review.query.get(review_id)
+    db.session().delete(r)
+    db.session().commit()
+
+    return redirect(url_for("reviews_index"))    

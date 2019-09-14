@@ -12,7 +12,6 @@
       <td><textarea rows="10" cols="40" name="modifiedReview" readonly>{{ review.review }}</textarea></td>
     </tr>  
     <tr>
-      <td></td>  
       <td colspan="2">  
         <form method="GET" action="{{ url_for('reviews_edit', review_id=review.id) }}">
           <input type="submit" value="Edit"/>
