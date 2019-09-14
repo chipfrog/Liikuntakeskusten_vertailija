@@ -1,21 +1,23 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+  <table cellspacing="10">
     <tr>
       <th>Grade</th>
       <th>Review</th>
     </tr>
     {% for review in reviews %}
-    <tr>
+    <tr valign="top">
       <td>{{ review.grade }}</td>
-      <td>
-        <form method="POST" action="{{ url_for('reviews_update', review_id=review.id) }}">
-          <textarea rows="10" cols="50" name="modifiedReview">{{ review.review }}
-          </textarea>
-          <input type="submit" value="Update review"/>
+      <td><textarea rows="10" cols="40" name="modifiedReview" readonly>{{ review.review }}</textarea></td>
+    </tr>  
+    <tr>
+      <td></td>  
+      <td colspan="2">  
+        <form method="GET" action="{{ url_for('reviews_edit', review_id=review.id) }}">
+          <input type="submit" value="Edit"/>
         </form>
-      </td>
+      </td>  
     </tr>
     {% endfor %}
   </table>

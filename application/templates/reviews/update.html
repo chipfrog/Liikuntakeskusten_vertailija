@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('reviews_create') }}">
+<form method="POST" action="{{ url_for('reviews_update', review_id=review_id) }}">
   <table>
     <tr>
       <td>{{ form.grade.label }}</td>
@@ -20,9 +20,11 @@
     </tr>
     <tr>
       <td colspan="2">
-        <input type="submit" value="Add a new review"/>  
+        <input type="submit" value="Update"/>  
       </td>   
     </tr>
   </table>
 </form>
 {% endblock %}
+
+
