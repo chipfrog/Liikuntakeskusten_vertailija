@@ -3,11 +3,13 @@
 {% block body %}
   <table cellspacing="10">
     <tr>
+      <th>Sports Club</th>
       <th>Grade</th>
       <th>Review</th>
     </tr>
     {% for review in reviews %}
-    <tr valign="top">
+    <tr valign="top" align="center">
+      <td>{{ review.club_id }}</td>
       <td>{{ review.grade }}</td>
       <td><textarea rows="10" cols="40" name="modifiedReview" readonly>{{ review.review }}</textarea></td>
     </tr>  

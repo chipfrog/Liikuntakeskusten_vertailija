@@ -10,10 +10,10 @@ from application.reviews.forms import ReviewForm
 def reviews_index():
     return render_template("reviews/list.html", reviews = Review.query.filter_by(account_id = current_user.id))
 
-@app.route("/reviews/new/")
+@app.route("/reviews/new/<club_id>/", methods=["GET"])
 @login_required
-def reviews_form():
-    return render_template("reviews/new.html", form = ReviewForm())
+def reviews_form(club_id):
+    return render_template("reviews/new.html", form = ReviewForm(), club_id=club_id)
 
 @app.route("/reviews/<review_id>/", methods=["GET"])
 @login_required
@@ -41,9 +41,9 @@ def reviews_update(review_id):
 
     return redirect(url_for("reviews_index")) 
 
-@app.route("/reviews/", methods=["POST"])
+@app.route("/reviews/create/<club_id>/", methods=["POST"])
 @login_required
-def reviews_create():
+def reviews_create(club_id):
     form = ReviewForm(request.form)
 
     if not form.validate():
@@ -51,6 +51,7 @@ def reviews_create():
 
     r = Review(form.grade.data, form.review.data)
     r.account_id = current_user.id
+    r.club_id = club_id
 
     db.session().add(r)
     db.session().commit()

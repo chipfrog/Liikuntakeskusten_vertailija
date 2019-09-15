@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% for club in clubs %}
+  <table>
+    <tr valign="top">
+      <td>{{ club.name }}</td>
+    </tr>
+    <tr>
+      <td>{{ club.city }}</td>
+    </tr> 
+    <tr>
+      <td>{{ club.price }} €/month</td>
+      <td>{{  club.id }}</td>
+      <td colspan="2">  
+        <form method="GET" action="{{ url_for('reviews_form', club_id=club.id) }}">
+          <input type="submit" value="Review"/>
+        </form>
+      </td>
+    </tr>
+  </table>
+  <br>
+{% endfor %}  
+{% endblock %}
