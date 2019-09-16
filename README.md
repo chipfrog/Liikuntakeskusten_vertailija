@@ -15,4 +15,10 @@ Toimintoja:
 
 [Käyttötapauksia](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/kayttotapaukset.md)
 
-[Heroku-sovellus](https://liikuntakeskusten-vertailija.herokuapp.com) 
+[Heroku-sovellus](https://liikuntakeskusten-vertailija.herokuapp.com)
+
+Herokussa on valmiina testikäyttäjä, mutta uudenkin käyttäjän luominen onnistuu. 
+
+Testikäyttäjä:
+* Username: testi 
+* password: testi
