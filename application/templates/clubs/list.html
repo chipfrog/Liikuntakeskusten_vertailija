@@ -1,23 +1,30 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{% for club in clubs %}
+
+{% if clubs_average_grade is defined %}
+{% for club in clubs_average_grade %}
   <table>
     <tr valign="top">
       <td>{{ club.name }}</td>
     </tr>
     <tr>
       <td>{{ club.city }}</td>
-    </tr> 
+    </tr>
+    <tr>
+      <td>Average rating: {{ club.average }}</td>
+    </tr>
     <tr>
       <td>{{ club.price }} €/month</td>
       <td colspan="2">  
-        <form method="GET" action="{{ url_for('reviews_form', club_id=club.id) }}">
+        <form method="GET" action="{{ url_for('reviews_form', club_id=club.club_id) }}">
           <input type="submit" value="Review"/>
         </form>
       </td>
     </tr>
   </table>
   <br>
-{% endfor %}  
+{% endfor %}
+{% endif %} 
+
 {% endblock %}
