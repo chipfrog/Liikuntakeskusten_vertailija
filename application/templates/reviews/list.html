@@ -1,14 +1,27 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table cellspacing="10">
+  <!-- <table cellspacing="10">
     <tr>
       <th>Sports Club</th>
       <th>Grade</th>
       <th>Review</th>
-    </tr>
-    {% for review in reviews %}
-    <tr valign="top" align="center">
+    </tr> -->
+  <br>  
+  {% for review in reviews %}
+  <div class="card" style="width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title">Club-id: {{ review.club_id }}</h5>
+      <h6 class="card-subtitle mb-2">Grade: {{ review.grade }}</h6>
+      <p class="card-text">{{ review.review }}</p>
+      <form method="GET" action="{{ url_for('reviews_edit', review_id=review.id) }}">
+        <input class="btn btn-light" type="submit" value="Edit"/>
+      </form>
+    </div>
+  </div>
+  <br>
+
+    <!-- <tr valign="top" align="center">
       <td>{{ review.club_id }}</td>
       <td>{{ review.grade }}</td>
       
@@ -20,7 +33,7 @@
           <input type="submit" value="Edit"/>
         </form>
       </td>  
-    </tr>
+    </tr> -->
     {% endfor %}
-  </table>
+  <!-- </table> -->
 {% endblock %}

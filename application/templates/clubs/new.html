@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
+<br>
 <form method="POST" action="{{ url_for('clubs_create')}}">
   <table>
     <tr>
@@ -28,7 +29,7 @@
     </tr>
     <tr>
       <td>
-        <input type="submit" value="Add new Sports Center"/>
+        <input class="btn btn-primary" type="submit" value="Add new Sports Center"/>
       </td>
     </tr>
   </table>

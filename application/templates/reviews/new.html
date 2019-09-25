@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<br>
 <form method="POST" action="{{ url_for('reviews_create', club_id=club_id) }}">
   <table>
     <tr>
@@ -20,7 +21,7 @@
     </tr>
     <tr>
       <td colspan="2">
-        <input type="submit" value="Add a new review"/>  
+        <input class="btn btn-primary" type="submit" value="Add a new review"/>  
       </td>   
     </tr>
   </table>

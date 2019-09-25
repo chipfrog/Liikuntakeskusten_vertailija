@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<br>
 <form method="POST" action="{{ url_for('reviews_update', review_id=review_id) }}">
   <table>
     <tr>
@@ -20,13 +21,14 @@
     </tr>
     <tr>
       <td colspan="2">
-        <input type="submit" value="Update"/>  
+        <input class="btn btn-primary" type="submit" value="Update"/>  
       </td>   
     </tr>
   </table>
 </form>
+
 <form method="POST" action="{{ url_for('reviews_delete', review_id=review_id) }}">
-  <input type="submit" value="Delete"/>
+  <input class="btn btn-danger" type="submit" value="Delete"/>
 </form>
 {% endblock %}
 
