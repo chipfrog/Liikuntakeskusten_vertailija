@@ -21,4 +21,4 @@ Herokussa on valmiina testikäyttäjä, mutta uudenkin käyttäjän luominen onn
 
 Testikäyttäjä:
 * Username: testi 
-* password: testi
+* password: abcd1234
