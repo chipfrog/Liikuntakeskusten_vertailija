@@ -31,9 +31,3 @@ def clubs_create():
 
     return redirect(url_for("clubs_index"))
 
-
-
-
-    
-        
-
