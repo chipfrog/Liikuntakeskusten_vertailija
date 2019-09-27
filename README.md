@@ -17,7 +17,7 @@ Toimintoja:
 
 [Heroku-sovellus](https://liikuntakeskusten-vertailija.herokuapp.com)
 
-Herokussa on valmiina testikäyttäjä, mutta uudenkin käyttäjän luominen onnistuu. 
+Herokussa on valmiina testikäyttäjä, mutta uudenkin käyttäjän luominen onnistuu. Kohtaan "User role" tulee kirjoittaa "owner", jos haluaa oikeuden luoda uusia liikuntakeskuksia tai "user", jos haluaa olla tavallinen käyttäjä. 
 
 Testikäyttäjä:
 * Username: testi 
