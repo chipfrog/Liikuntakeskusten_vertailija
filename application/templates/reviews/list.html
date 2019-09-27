@@ -1,12 +1,6 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <!-- <table cellspacing="10">
-    <tr>
-      <th>Sports Club</th>
-      <th>Grade</th>
-      <th>Review</th>
-    </tr> -->
   <br>  
   {% for review in reviews %}
   <div class="card" style="width: 25rem;">
@@ -20,20 +14,6 @@
     </div>
   </div>
   <br>
+{% endfor %}
 
-    <!-- <tr valign="top" align="center">
-      <td>{{ review.club_id }}</td>
-      <td>{{ review.grade }}</td>
-      
-      <td><textarea rows="10" cols="40" name="modifiedReview" readonly>{{ review.review }}</textarea></td>
-    </tr>  
-    <tr>
-      <td colspan="2">  
-        <form method="GET" action="{{ url_for('reviews_edit', review_id=review.id) }}">
-          <input type="submit" value="Edit"/>
-        </form>
-      </td>  
-    </tr> -->
-    {% endfor %}
-  <!-- </table> -->
 {% endblock %}

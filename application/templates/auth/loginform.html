@@ -2,34 +2,7 @@
 
 {% block body %}
 {{ error }}
-<!-- <form method="POST" action="{{ url_for('auth_login') }}">
-  <table>
-    <tr>
-      <td>
-        {{ form.username.label }}  
-      </td>
-      <td>
-        {{ form.username }}  
-      </td>  
-    </tr>
-    <tr>
-      <td>
-        {{ form.password.label }}  
-      </td>
-      <td>
-        {{ form.password }}  
-      </td>  
-    </tr>
-    <tr>
-      <td>
-        <input class="btn btn-success" type="submit" value="Login"/>  
-      </td>  
-    </tr>    
-  </table>
-</form>
-<form method="GET" action="{{ url_for('auth_create')}}">
-  <input class="btn btn-primary" type="submit" value="Create user"/>  
-</form> -->
+
 <form method="POST" action="{{ url_for('auth_login') }}">
   <div class="form-group">
     {{ form.username.label(for="inputUsername") }}

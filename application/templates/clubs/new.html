@@ -1,39 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-<!-- <br>
-<form method="POST" action="{{ url_for('clubs_create')}}">
-  <table>
-    <tr>
-      <td>{{ form.name.label }}</td>
-      <td>{{ form.name }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.city.label }}</td>
-      <td>{{ form.city }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.address.label }}</td>
-      <td>{{ form.address }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.email.label }}</td>
-      <td>{{ form.email }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.tel.label }}</td>
-      <td>{{ form.tel }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.price.label }}</td>
-      <td>{{ form.price }}</td>
-    </tr>
-    <tr>
-      <td>
-        <input class="btn btn-primary" type="submit" value="Add new Sports Center"/>
-      </td>
-    </tr>
-  </table>
-</form> -->
+
+<br>
 <form method="POST" action="{{ url_for('clubs_create')}}">
   <div class="form-group">
     {{ form.name.label(for="inputName") }}
