@@ -11,10 +11,10 @@ class LoginForm(FlaskForm):
 
 class CreateUserForm(FlaskForm):
     name = StringField("Name", [validators.input_required()])
-    email = EmailField("email", [validators.input_required()])
+    email = EmailField("Email", [validators.input_required()])
     username = StringField("Username", [validators.Length(min=4)])
     password = PasswordField("Password", [validators.Length(min=8)])
+    role = StringField("User role", [validators.input_required()])
     
-
     class Meta:
         csrf = False         

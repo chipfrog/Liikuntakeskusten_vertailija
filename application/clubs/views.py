@@ -1,6 +1,6 @@
-from application import app, db
+from application import app, db, login_required
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
 from application.clubs.models import Club
 from application.reviews.models import Review
@@ -12,7 +12,7 @@ def clubs_index():
     return render_template("clubs/list.html", clubs_average_grade = Club.clubs_by_avg_grade())
 
 @app.route("/clubs/new", methods=["POST", "GET"])
-@login_required
+@login_required(role="owner")
 def clubs_create():
     
     if request.method == "GET":

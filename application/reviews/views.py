@@ -1,6 +1,7 @@
-from application import app, db
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user, login_required
+
+from application import app, db
 from application.reviews.models import Review
 from application.reviews.forms import ReviewForm
 
@@ -46,7 +47,7 @@ def reviews_create(club_id):
     form = ReviewForm(request.form)
 
     if not form.validate():
-        return render_template("reviews/new.html", form=form)
+        return render_template("reviews/new.html", form=form, club_id=club_id)
 
     r = Review(form.grade.data, form.review.data)
     r.account_id = current_user.id

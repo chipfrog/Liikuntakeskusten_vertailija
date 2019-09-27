@@ -9,15 +9,17 @@ class User(Base):
     email = db.Column(db.String(120), unique=True, nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    role = db.Column(db.String(10), nullable=False)
     
     clubs = db.relationship("Club", backref='account', lazy=True)
     reviews = db.relationship("Review", backref='account', lazy=True)
 
-    def __init__(self, name, email, username, password):
+    def __init__(self, name, email, username, password, role):
         self.name = name
         self.email = email
         self.username = username
         self.password = password
+        self.role = role
         
     def get_id(self):
         return self.id
@@ -30,5 +32,8 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+    def get_role(self):
+        return self.role    
 
                           
