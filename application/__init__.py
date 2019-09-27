@@ -24,7 +24,6 @@ login_manager.login_view = "auth_login"
 login_manager.login_message = "Please login to use this functionality"
 
 from functools import wraps
-
 def login_required(role="ANY"):
     def wrapper(fn):
         @wraps(fn)
@@ -42,8 +41,7 @@ def login_required(role="ANY"):
 
                 if current_user.get_role() == role:
                     unauthorized = False
-                    
-
+            
             if unauthorized:
                 return login_manager.unauthorized()
 

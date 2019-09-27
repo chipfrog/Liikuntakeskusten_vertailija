@@ -14,7 +14,6 @@ def clubs_index():
 @app.route("/clubs/new", methods=["POST", "GET"])
 @login_required(role="owner")
 def clubs_create():
-    
     if request.method == "GET":
         return render_template("clubs/new.html", form = CreateClubForm())
 
@@ -30,4 +29,20 @@ def clubs_create():
     db.session().commit()
 
     return redirect(url_for("clubs_index"))
+
+@app.route("/clubs/myclub", methods=["GET"])
+@login_required(role="owner")
+def clubs_edit():
+    club = Club.query.filter_by(account_id = current_user.id).first()
+    form = CreateClubForm(request.form)
+    
+    form.name.data = club.name
+    form.city.data = club.city
+    form.address.data = club.address
+    form.email.data = club.email
+    form.price.data = club.price
+
+    return render_template("clubs/update.html", form=form)
+    
+
 
