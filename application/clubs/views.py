@@ -17,11 +17,16 @@ def clubs_create():
     if request.method == "GET":
         return render_template("clubs/new.html", form = CreateClubForm())
 
-    form = CreateClubForm(request.form)    
-
+    form = CreateClubForm(request.form)
+     
     if not form.validate():
         return render_template("clubs/new.html", form=form)
 
+    # Tarkistetaan ettei samannimistä seuraa ole tietokannassa.
+    club_name = Club.query.filter_by(name=form.name.data).first()
+    if club_name:
+        return render_template("clubs/new.html", form=form, error="{} already exists.".format(form.name.data))       
+    # Luodaan uusi seura ja lisätään tietokantaan
     c = Club(form.name.data, form.city.data, form.address.data, form.email.data, form.tel.data, form.price.data)
     c.account_id = current_user.id
 
@@ -32,9 +37,50 @@ def clubs_create():
 
 @app.route("/clubs/myclubs", methods=["GET"])
 @login_required(role="owner")
-def clubs_edit():
+def clubs_my_clubs():
     clubs = Club.my_clubs_by_avg_grade(current_user.id)
     return render_template("clubs/list_my_clubs.html", clubs=clubs)
+
+@app.route("/clubs/edit/<club_id>/", methods=["GET"])
+@login_required(role="owner")
+def clubs_edit(club_id):
+    club = Club.query.get(club_id)
+    if not club.account_id == current_user.id:
+        return render_template("error.html")
+    form = CreateClubForm(request.form)
+    
+    form.name.data = club.name
+    form.city.data = club.city
+    form.address.data = club.address
+    form.email.data = club.email
+    form.tel.data = club.tel
+    form.price.data = club.price
+
+    return render_template("clubs/update.html", form=form, club_id=club_id)
+
+@app.route("/clubs/update/<club_id>/", methods=["POST"])
+@login_required(role="owner")
+def clubs_update(club_id):
+    form = CreateClubForm(request.form)
+
+    if not form.validate():
+        return render_template("clubs/update.html", form=form, club_id=club_id)
+
+    club = Club.query.get(club_id)
+    
+    if not club.account_id == current_user.id:
+        return render_template("error.html")
+    
+    club.name = form.name.data
+    club.city = form.city.data
+    club.address = form.address.data
+    club.email = form.email.data
+    club.tel = form.tel.data
+    club.price = form.price.data
+
+    db.session().commit()
+
+    return redirect(url_for("clubs_my_clubs")) 
 
 @app.route("/clubs/reviews/<club_id>/", methods=["GET"])
 def clubs_reviews(club_id):

@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% block form_content %}  
+  <div class="form-group">
+    {{ form.name.label(for="inputName") }}
+    {{ form.name(type="text", class="form-control", id="inputName") }}
+  </div>
+  <div>
+      <ul>
+        {% for error in form.name.errors %}
+        <li>{{ error }}</li> 
+        {% endfor %} 
+      </ul> 
+    </div>
+  <div class="form-group">
+    {{ form.city.label(for="inputCity") }}
+    {{ form.city(type="text", class="form-control", id="inputCity") }}
+  </div>
+  <div>
+    <ul>
+      {% for error in form.city.errors %}
+      <li>{{ error }}</li> 
+      {% endfor %} 
+    </ul>
+  </div>
+  <div class="form-group">
+    {{ form.address.label(for="inputAddress") }}
+    {{ form.address(type="text", class="form-control", id="inputAddress") }}
+  </div>
+  <div>
+    <ul>
+      {% for error in form.address.errors %}
+      <li>{{ error }}</li> 
+      {% endfor %} 
+    </ul>
+  </div>
+  <div class="form-group">
+    {{ form.email.label(for="inputEmail") }}
+    {{ form.email(type="email", class="form-control", id="inputEmail") }}
+  </div>
+  <div>
+    <ul>
+      {% for error in form.email.errors %}
+      <li>{{ error }}</li> 
+      {% endfor %} 
+    </ul>
+  </div>
+  <div class="form-group">
+    {{ form.tel.label(for="inputPhone") }}
+    {{ form.tel(type="text", class="form-control", id="inputPhone") }}
+  </div>
+  <div>
+    <ul>
+      {% for error in form.tel.errors %}
+      <li>{{ error }}</li> 
+      {% endfor %} 
+    </ul>
+  </div>
+  <div class="form-group">
+    {{ form.price.label(for="inputPrice") }}
+    {{ form.price(type="number", class="form-control", id="inputPrice") }}
+  </div>
+  {% endblock %}
+
+
+{% endblock %}

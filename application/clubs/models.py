@@ -45,7 +45,8 @@ class Club(Base):
         stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, review.id AS review_id, review.account_id AS user_id, COUNT(review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "WHERE club.account_id = :id "
-                    "GROUP BY club.id, review.id ORDER BY average DESC").params(id=account_id)
+                    "GROUP BY club.id, review.id "
+                    "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC").params(id=account_id)
         result = db.engine.execute(stmt)
 
         return result
