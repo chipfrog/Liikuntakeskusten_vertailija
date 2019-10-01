@@ -2,14 +2,22 @@ from application import db
 from application.models import Base
 from sqlalchemy.sql import text
 
+sports = db.Table('sports',
+    db.Column('sport_id', db.Integer, db.ForeignKey('sport.id'), primary_key=True),
+    db.Column('club_id', db.Integer, db.ForeignKey('club.id'), primary_key=True)
+)
+
 class Club(Base):
     
-    name = db.Column(db.String(80), nullable=False)
-    city = db.Column(db.String(80), nullable=False)
-    address = db.Column(db.String(80))
-    email = db.Column(db.String(100))
-    tel = db.Column(db.String(20))
+    name = db.Column(db.String(40), unique=True, nullable=False)
+    city = db.Column(db.String(40), nullable=False)
+    address = db.Column(db.String(40))
+    email = db.Column(db.String(40))
+    tel = db.Column(db.String(40))
     price = db.Column(db.Integer, nullable=False)
+
+    sports = db.relationship('Sport', secondary=sports, lazy='subquery',
+        backref=db.backref('clubs', lazy=True))
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
     reviews = db.relationship("Review", backref='club', lazy=True)
@@ -24,11 +32,23 @@ class Club(Base):
 
     @staticmethod
     def clubs_by_avg_grade():
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average FROM club LEFT JOIN review ON review.club_id = club.id GROUP BY club.id ORDER BY average DESC;")
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, review.id AS review_id, review.account_id AS user_id, COUNT(review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
+                    "FROM club LEFT JOIN review ON review.club_id = club.id "
+                    "GROUP BY club.id "
+                    "ORDER BY average DESC;")
         result = db.engine.execute(stmt)
-        print(type(result))
+        
+        return result
+
+    @staticmethod
+    def my_clubs_by_avg_grade(account_id):
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, review.id AS review_id, review.account_id AS user_id, COUNT(review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
+                    "FROM club LEFT JOIN review ON review.club_id = club.id "
+                    "WHERE club.account_id = :id GROUP BY club.id ORDER BY average DESC").params(id=account_id)
+        result = db.engine.execute(stmt)
 
         return result
+
 
 
 

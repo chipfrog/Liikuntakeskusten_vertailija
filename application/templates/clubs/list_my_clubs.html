@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
-
 {% block body %}
 
-{% if clubs_average_grade is defined %}
-{% for club in clubs_average_grade %}
+{% for club in clubs %}
 <br>
 <div class="card bg-light" style="width: 18rem;">
   <h5 class="card-header card-title">
@@ -16,17 +14,12 @@
       <li class="list-group-item">Based on: {{ club.reviews }} reviews </li>
       <li class="list-group-item">Price: {{ club.price }} €/month</li>
     </ul>
-    {% if current_user.is_authenticated %}
-      {% if current_user.role == "user" %}
-        <a href="{{ url_for('reviews_form', club_id=club.club_id) }}" class="btn btn-primary mt-3"/>Review</a>
-      {% endif %}
-    {% endif %}
-       
-    <a href="{{ url_for('clubs_reviews', club_id=club.club_id) }}" class="btn btn-secondary mt-3 ml-1">Show reviews</a>
+    <a href="{{ url_for('add_sport', club_id = club.club_id) }}" class="btn btn-primary mt-3"/>Add</a>
+    
+    
   </div>
 </div>
 
 {% endfor %}
-{% endif %}
- 
+
 {% endblock %}

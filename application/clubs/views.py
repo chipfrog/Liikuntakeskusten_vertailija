@@ -30,19 +30,18 @@ def clubs_create():
 
     return redirect(url_for("clubs_index"))
 
-@app.route("/clubs/myclub", methods=["GET"])
+@app.route("/clubs/myclubs", methods=["GET"])
 @login_required(role="owner")
 def clubs_edit():
-    club = Club.query.filter_by(account_id = current_user.id).first()
-    form = CreateClubForm(request.form)
-    
-    form.name.data = club.name
-    form.city.data = club.city
-    form.address.data = club.address
-    form.email.data = club.email
-    form.price.data = club.price
+    clubs = Club.my_clubs_by_avg_grade(current_user.id)
+    return render_template("clubs/list_my_clubs.html", clubs=clubs)
 
-    return render_template("clubs/update.html", form=form)
+@app.route("/clubs/reviews/<club_id>/", methods=["GET"])
+def clubs_reviews(club_id):
+    return render_template("clubs/club_reviews.html", reviews = Review.get_clubs_reviews(club_id))
+
+
     
+
 
 

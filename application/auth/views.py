@@ -32,16 +32,35 @@ def auth_create():
         return render_template("auth/newuserform.html", form = CreateUserForm())
 
     form = CreateUserForm(request.form)
-
+    
     if not form.validate():
         return render_template("auth/newuserform.html", form=form)
 
-    new_user = User(form.name.data, form.email.data, form.username.data, form.password.data, form.role.data)
+    username = form.username.data
+    email = form.email.data
 
+    # Varmistetaan, että username ja email ovat uniikkeja
+    username_exists = User.query.filter_by(username=username).first()
+    email_exists = User.query.filter_by(email=email).first()
+
+    if username_exists and not email_exists:
+        return render_template("auth/newuserform.html", form=form, error="Username {} exists already".format(username))
+    if email_exists and not username_exists:
+        return render_template("auth/newuserform.html", form=form, error="Email {} exists already".format(email)) 
+    if username_exists and email_exists:
+        return render_template("auth/newuserform.html", form=form, error="Username {0} and email {1} exist already".format(username, email))       
+
+    # Luodaan uusi käyttäjä ja lisätään tietokantaann
+    new_user = User(form.name.data, form.email.data, form.username.data, form.password.data, form.role.data)
     db.session().add(new_user)
     db.session().commit()
 
     return redirect(url_for("index"))
+
+
+        
+
+
 
 
     

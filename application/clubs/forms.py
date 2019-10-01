@@ -12,4 +12,7 @@ class CreateClubForm(FlaskForm):
 
     class Meta():
         csrf = False
+        
+
+        
 

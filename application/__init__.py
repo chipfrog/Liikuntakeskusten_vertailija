@@ -58,6 +58,9 @@ from application.reviews import views
 from application.auth import models
 from application.auth import views
 
+from application.sports import models
+from application.sports import views
+
 from application.clubs import models
 from application.clubs import views
 

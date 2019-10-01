@@ -8,9 +8,6 @@
       <h5 class="card-title">{{ review.name }}, {{ review.city }}</h5>
       <h6 class="card-subtitle mb-2">Grade: {{ review.grade }}</h6>
       <p class="card-text">{{ review.review }}</p>
-      <form method="GET" action="{{ url_for('reviews_edit', review_id=review.review_id) }}">
-        <input class="btn btn-light" type="submit" value="Edit"/>
-      </form>
     </div>
   </div>
   <br>
