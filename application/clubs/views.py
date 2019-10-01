@@ -82,6 +82,25 @@ def clubs_update(club_id):
 
     return redirect(url_for("clubs_my_clubs")) 
 
+@app.route("/clubs/delete/<club_id>/", methods=["POST"])
+@login_required(role="owner")
+def clubs_delete(club_id):
+    club = Club.query.get(club_id)
+    
+    if not club.account_id == current_user.id:
+        return render_template("error.html")
+
+    reviews = Review.query.filter_by(club_id = club_id)
+
+    for review in reviews:
+        db.session().delete(review)    
+
+    
+    db.session().delete(club)
+    db.session().commit()
+
+    return redirect(url_for("clubs_my_clubs"))        
+
 @app.route("/clubs/reviews/<club_id>/", methods=["GET"])
 def clubs_reviews(club_id):
     return render_template("clubs/club_reviews.html", reviews = Review.get_clubs_reviews(club_id))

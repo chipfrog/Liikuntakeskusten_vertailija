@@ -7,9 +7,14 @@
   {% block form_content %}
     {{ super() }}  
   {% endblock %}
-  <div class="form-group">
+  <div class="form-group row">
       <button class="btn btn-primary" type="submit">Save changes</button>
   </div>
 </form>
+<div class="form-group row">
+  <form method="POST" action="{{ url_for('clubs_delete', club_id = club_id) }}">
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+</div>
 
 {% endblock %}
