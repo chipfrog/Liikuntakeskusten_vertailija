@@ -34,7 +34,7 @@ class Club(Base):
     def clubs_by_avg_grade():
         stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, review.id AS review_id, review.account_id AS user_id, COUNT(review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
-                    "GROUP BY club.id "
+                    "GROUP BY club.id, review.id "
                     "ORDER BY average DESC;")
         result = db.engine.execute(stmt)
         
@@ -44,7 +44,8 @@ class Club(Base):
     def my_clubs_by_avg_grade(account_id):
         stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, review.id AS review_id, review.account_id AS user_id, COUNT(review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
-                    "WHERE club.account_id = :id GROUP BY club.id ORDER BY average DESC").params(id=account_id)
+                    "WHERE club.account_id = :id "
+                    "GROUP BY club.id ORDER BY average DESC").params(id=account_id)
         result = db.engine.execute(stmt)
 
         return result
