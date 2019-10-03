@@ -19,6 +19,11 @@ Toimintoja:
 
 Herokussa on valmiina testikäyttäjä, mutta uudenkin käyttäjän luominen onnistuu. Kohtaan "User role" tulee kirjoittaa "owner", jos haluaa oikeuden luoda uusia liikuntakeskuksia tai "user", jos haluaa olla tavallinen käyttäjä. (Valintatapa tullaan muuttamaan käyttäjäystävällisemmäksi) 
 
-Testikäyttäjä:
-* Username: testi 
-* password: abcd1234
+Testikäyttäjä (user):
+* Username: user
+* password: abcd
+
+Testikäyttäjä (owner):
+* Username: owner
+* password: abcd
+
