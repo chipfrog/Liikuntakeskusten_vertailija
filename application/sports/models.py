@@ -10,10 +10,18 @@ class Sport(Base):
 
     @staticmethod
     def get_sports(club_id):
-        stmt = text("SELECT name FROM sports "
+        stmt = text("SELECT name, id FROM sports "
                     "LEFT JOIN sport ON sport.id = sports.sport_id "
                     "WHERE sports.club_id = :id").params(id=club_id)
 
         result = db.engine.execute(stmt)
-        return result            
+        return result
+
+    @staticmethod
+    def delete_sport_association(sport_id, club_id):
+        stmt = text("DELETE FROM sports "
+                    "WHERE sport_id = :sport_id AND club_id = :club_id ").params(sport_id=sport_id, club_id=club_id)
+
+        result = db.engine.execute(stmt)
+        return result                
 

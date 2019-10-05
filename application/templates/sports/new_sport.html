@@ -22,16 +22,26 @@
   <div class="form-group">
       <button class="btn btn-primary" type="submit">Add</button>
   </div>
-  <div>
+</form>  
+  
     <h5>Existing sports</h5>
-    <ul>
+    
     {% if sports is defined %}  
     {% for sport in sports %}
-      <li>{{ sport.name }}</li>
+    <div class="card" style="width: 15rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ sport.name }}</h5>
+          <form method="POST" action="{{ url_for('sports_delete_association', sport_id = sport.id, club_id = club_id) }}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+    </div>
+    <br>
+      
     {% endfor %}
     {% endif %}
-    </ul>
-  </div>
-</form>      
+    
+  
+      
 
 {% endblock %}

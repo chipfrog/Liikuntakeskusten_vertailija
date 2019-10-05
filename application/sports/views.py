@@ -2,7 +2,7 @@ from application import app, db, login_required
 from flask import render_template, request, redirect, url_for
 from flask_login import current_user
 
-from application.clubs.models import Club
+from application.clubs.models import Club, sports
 from application.sports.models import Sport
 from application.sports.forms import SportForm
 
@@ -44,13 +44,25 @@ def add_sport(club_id):
 
     return render_template("sports/new_sport.html", form=SportForm(), club_id=club_id, message=message, sports=Sport.get_sports(club_id))
 
+@app.route("/clubs/deletesport/<sport_id>/<club_id>/", methods=["POST"])
+@login_required(role="owner")
+def sports_delete_association(sport_id, club_id):
+    club = Club.query.get(club_id)
+    
+    # Varmistaa, että kirjautunut käyttäjä on seuran omistaja
+    if not club.account_id == current_user.id:
+        return render_template("error.html") 
+    
+    # Poistaa sports-liitostaulusta yhteyden liikuntalajin ja seuran väliltä 
+    Sport.delete_sport_association(sport_id, club_id)
+    db.session().commit()
+    
+    return redirect(url_for("add_sport", club_id=club_id))
+
+
+
 
   
 
 
  
-
-
-
-
-
