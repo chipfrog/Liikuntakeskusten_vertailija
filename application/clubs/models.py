@@ -58,7 +58,8 @@ class Club(Base):
                     "ROUND(AVG(review.grade), 2) AS average, "
                     "COUNT(DISTINCT sports.sport_id) AS sportscount "
                     "FROM club LEFT JOIN review ON review.club_id = club.id LEFT JOIN sports ON sports.club_id = club.id "
-                    "WHERE club.id = :id").params(id=club_id)
+                    "WHERE club.id = :id "
+                    "GROUP BY club.name").params(id=club_id)
         result = db.engine.execute(stmt)
 
         return result                
