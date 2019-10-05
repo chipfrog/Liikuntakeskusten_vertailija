@@ -109,7 +109,6 @@ def clubs_reviews(club_id):
 
 @app.route("/clubs/info/<club_id>/", methods=["GET"])
 def clubs_info(club_id):
-    # club = Club.query.get(club_id)
     club = Club.get_club_info(club_id).first()
     sports = Sport.get_sports(club_id)
     return render_template("clubs/info.html", club = club, sports = sports)

@@ -8,12 +8,29 @@
       {{ message }}
     {% endif %}
   </div>
+  <div>
+      <ul>
+        {% for error in form.name.errors %}
+        <li>{{ error }}</li> 
+        {% endfor %} 
+      </ul> 
+  </div>
   <div class="form-group">
     {{ form.name.label }}
     {{ form.name(type="text", class="form-control", id="inputName") }}
   </div>
   <div class="form-group">
       <button class="btn btn-primary" type="submit">Add</button>
+  </div>
+  <div>
+    <h5>Existing sports</h5>
+    <ul>
+    {% if sports is defined %}  
+    {% for sport in sports %}
+      <li>{{ sport.name }}</li>
+    {% endfor %}
+    {% endif %}
+    </ul>
   </div>
 </form>      
 
