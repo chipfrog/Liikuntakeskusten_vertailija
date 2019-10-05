@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-4">{{ club.club_name }}</h1>
+    <h3 class="subtitle mb-2 text-muted">{{ club.city }}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Score:</th>
+          <th scope="col">Reviews:</th>
+          <th scope="col">Sports:</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>{{ club.average }}/5</td>
+        <td>{{ club.reviews }}</td>
+        <td>{{ club.sportscount }}</td>
+      </tr>
+    </table>
+    
+    <br>
+    <p>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sports" aria-expanded="false" aria-controls="collapseExample">
+          Available sports
+      </button>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#contact" aria-expanded="false" aria-controls="collapseExample">
+          Contact information
+      </button>
+    </p>
+    <div class="container" id="group">
+      <div class="collapse" id="sports" data-parent="#group">
+        <div class="card card-body">
+          <ul>
+            {% for sport in sports %}
+            <li>
+              {{ sport.name }}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="collapse" id="contact" data-parent="#group">
+        <table>
+          <tr>
+            <td>Address: {{ club.address }}</td>
+          </tr>
+          <tr>
+            <td>Email:  {{ club.email }}</td>
+          </tr>
+          <tr>
+            <td>Phone: {{ club.tel }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>  
+</div>
+
+
+{% endblock %}

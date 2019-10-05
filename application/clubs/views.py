@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, url_for
 from flask_login import current_user
 
 from application.clubs.models import Club
+from application.sports.models import Sport
 from application.reviews.models import Review
 from application.reviews.forms import ReviewForm
 from application.clubs.forms import CreateClubForm
@@ -92,10 +93,11 @@ def clubs_delete(club_id):
 
     reviews = Review.query.filter_by(club_id = club_id)
 
+    # Poistaa seuraan liittyvät arvostelut
     for review in reviews:
         db.session().delete(review)    
 
-    
+    # Poistaa seuran 
     db.session().delete(club)
     db.session().commit()
 
@@ -104,6 +106,13 @@ def clubs_delete(club_id):
 @app.route("/clubs/reviews/<club_id>/", methods=["GET"])
 def clubs_reviews(club_id):
     return render_template("clubs/club_reviews.html", reviews = Review.get_clubs_reviews(club_id))
+
+@app.route("/clubs/info/<club_id>/", methods=["GET"])
+def clubs_info(club_id):
+    # club = Club.query.get(club_id)
+    club = Club.get_club_info(club_id).first()
+    sports = Sport.get_sports(club_id)
+    return render_template("clubs/info.html", club = club, sports = sports)
 
 
     
