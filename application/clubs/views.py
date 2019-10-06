@@ -26,8 +26,6 @@ def clubs_search():
     score = form.score_min.data
     sport = form.sport.data
 
-    print("SCORE:")
-    print(score)
     clubs = Club.filter_clubs(city, score, sport)
     
     return render_template("clubs/list.html", clubs_average_grade = clubs)           

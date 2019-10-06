@@ -51,7 +51,7 @@ class Club(Base):
                     "WHERE (:city = '' OR club.city = :city) "
                     "AND (:sport = '' OR sport.name = :sport) "
                     "GROUP BY club.id "
-                    "HAVING :score IS NULL OR average >= :score "
+                    "HAVING :score IS NULL OR ROUND(AVG(review.grade), 2) >= :score "
                     "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC").params(city=city, score=score, sport=sport)
 
         result = db.engine.execute(stmt)
