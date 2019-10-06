@@ -42,7 +42,7 @@ class Club(Base):
         return result
     
     @staticmethod
-    def filter_clubs(city, score, sport):
+    def filter_clubs(city, score, price_min, price_max, sport):
         stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, "
                     "COUNT(DISTINCT review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
@@ -50,9 +50,11 @@ class Club(Base):
                     "LEFT JOIN sport ON sport.id = sports.sport_id "
                     "WHERE (:city = '' OR club.city = :city) "
                     "AND (:sport = '' OR sport.name = :sport) "
+                    "AND (:price_min IS NULL OR club.price >= :price_min) "
+                    "AND (:price_max IS NULL OR club.price <= :price_max) "
                     "GROUP BY club.id "
                     "HAVING :score IS NULL OR ROUND(AVG(review.grade), 2) >= :score "
-                    "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC").params(city=city, score=score, sport=sport)
+                    "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC").params(city=city, score=score, price_min=price_min, price_max=price_max,sport=sport)
 
         result = db.engine.execute(stmt)
 

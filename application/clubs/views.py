@@ -24,9 +24,11 @@ def clubs_search():
                
     city = form.city.data
     score = form.score_min.data
+    price_min = form.price_min.data
+    price_max = form.price_max.data
     sport = form.sport.data
 
-    clubs = Club.filter_clubs(city, score, sport)
+    clubs = Club.filter_clubs(city, score, price_min, price_max, sport)
     
     return render_template("clubs/list.html", clubs_average_grade = clubs)           
 
