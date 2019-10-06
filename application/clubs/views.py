@@ -22,12 +22,14 @@ def clubs_search():
     if not form.validate():
         return render_template("clubs/search.html", form = form)
                
+    # Tallennetaan käyttäjän syöttämät kriteerit muuttujiin           
     city = form.city.data
     score = form.score_min.data
     price_min = form.price_min.data
     price_max = form.price_max.data
     sport = form.sport.data
 
+    # Etsitään seuroja annetuilla kriteereillä
     clubs = Club.filter_clubs(city, score, price_min, price_max, sport)
     
     return render_template("clubs/list.html", clubs_average_grade = clubs)           
@@ -66,8 +68,11 @@ def clubs_my_clubs():
 @login_required(role="owner")
 def clubs_edit(club_id):
     club = Club.query.get(club_id)
+    
+    # Varmistetaan käyttöoikeus
     if not club.account_id == current_user.id:
         return render_template("error.html")
+    
     form = CreateClubForm(request.form)
     
     form.name.data = club.name
@@ -89,6 +94,7 @@ def clubs_update(club_id):
 
     club = Club.query.get(club_id)
     
+    # Varmistetaan käyttöoikeus
     if not club.account_id == current_user.id:
         return render_template("error.html")
     
@@ -131,6 +137,7 @@ def clubs_reviews(club_id):
 def clubs_info(club_id):
     club = Club.get_club_info(club_id).first()
     sports = Sport.get_sports(club_id)
+    
     return render_template("clubs/info.html", club = club, sports = sports)
 
 

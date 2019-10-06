@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SelectField, validators
+from wtforms import PasswordField, StringField, SelectField, RadioField, validators
 from wtforms.fields.html5 import EmailField
 
 
@@ -15,7 +15,8 @@ class CreateUserForm(FlaskForm):
     email = EmailField("Email", [validators.input_required(), validators.Length(max=40, message='Email too long')])
     username = StringField("Username", [validators.Length(min=4, max=20)])
     password = PasswordField("Password", [validators.Length(min=4, max=20)])
-    role = StringField("User role", [validators.input_required()])
+    role = RadioField("User role",  [validators.input_required()], choices=[('user', 'User'), ('owner', 'Owner')])
+    # role = StringField("User role", [validators.input_required()])
 
     class Meta:
         csrf = False         
