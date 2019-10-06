@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<br>
+<form method="POST" action="{{ url_for('clubs_search')}}">
+  <div class="form-group">
+    {{ form.city.label(for="searchCity") }}
+    {{ form.city(type="text", class="form-control", id="searchCity") }}
+  </div>
+  <div>
+    <ul>
+      {% for error in form.city.errors %}
+      <li>{{ error }}</li> 
+      {% endfor %} 
+    </ul> 
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      {{ form.score_min.label(for="minScore") }}
+      {{ form.score_min(type="number", class="form-control", id="minScore") }}
+    </div>
+  </div>
+  <div>
+    <ul>
+      {% for error in form.score_min.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      {{ form.price_min.label(for="priceMin") }}
+      {{ form.price_min(type="number", class="form-control", id="priceMin") }}
+    </div>
+    <div class="form-group col-md-3">
+      {{ form.price_max.label(for="priceMax") }}
+      {{ form.price_max(type="number", class="form-control", id="priceMax") }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <ul>
+        {% for error in form.price_min.errors %}
+        <li>{{ error }}</li> 
+        {% endfor %} 
+      </ul>
+    </div>
+    <div class="form-group">
+      <ul>
+        {% for error in form.price_max.errors %}
+        <li>{{ error }}</li> 
+        {% endfor %} 
+      </ul> 
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.sport.label(for="searchSport") }}
+    {{ form.sport(type="text", class="form-control", id="searchSport") }}
+  </div>
+  <div>
+    <ul>
+      {% for error in form.sport.errors %}
+      <li>{{ error }}</li> 
+      {% endfor %} 
+    </ul> 
+  </div>
+  <div class="form-group">
+      <button class="btn btn-primary" type="submit">Search</button>
+  </div>
+</form>
+
+{% endblock %}

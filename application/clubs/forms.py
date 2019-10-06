@@ -12,6 +12,16 @@ class CreateClubForm(FlaskForm):
 
     class Meta():
         csrf = False
+
+class SearchClubForm(FlaskForm):
+    city = StringField("City", [validators.Length(max=30)])
+    score_min = IntegerField("Minimum score", [validators.NumberRange(min=0, max=5), validators.Optional()])
+    price_min = IntegerField("Price min", [validators.NumberRange(min=0, max=1000), validators.Optional()])
+    price_max = IntegerField("Price max", [validators.NumberRange(min=0, max=1000), validators.Optional()])
+    sport = StringField("Available sport", [validators.Length(max=30)])    
+
+    class Meta():
+        csrf = False    
         
 
         

@@ -2,7 +2,7 @@
 
 {% block body %}
 {{ error }}
-
+<br>
 <form method="POST" action="{{ url_for('auth_login') }}">
   <div class="form-group">
     {{ form.username.label(for="inputUsername") }}

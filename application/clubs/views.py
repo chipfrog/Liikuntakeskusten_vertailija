@@ -6,11 +6,31 @@ from application.clubs.models import Club
 from application.sports.models import Sport
 from application.reviews.models import Review
 from application.reviews.forms import ReviewForm
-from application.clubs.forms import CreateClubForm
+from application.clubs.forms import CreateClubForm, SearchClubForm
 
 @app.route("/clubs", methods=["GET"])
 def clubs_index():
     return render_template("clubs/list.html", clubs_average_grade = Club.clubs_by_avg_grade())
+
+@app.route("/clubs/search/", methods=["GET", "POST"])
+def clubs_search():
+    if request.method == "GET":
+        return render_template("clubs/search.html", form = SearchClubForm()) 
+
+    form = SearchClubForm(request.form)
+
+    if not form.validate():
+        return render_template("clubs/search.html", form = form)
+               
+    city = form.city.data
+    score = form.score_min.data
+    sport = form.sport.data
+
+    print("SCORE:")
+    print(score)
+    clubs = Club.filter_clubs(city, score, sport)
+    
+    return render_template("clubs/list.html", clubs_average_grade = clubs)           
 
 @app.route("/clubs/new", methods=["POST", "GET"])
 @login_required(role="owner")
@@ -34,7 +54,7 @@ def clubs_create():
     db.session().add(c)
     db.session().commit()
 
-    return redirect(url_for("clubs_index"))
+    return redirect(url_for("clubs_my_clubs"))
 
 @app.route("/clubs/myclubs", methods=["GET"])
 @login_required(role="owner")
@@ -112,6 +132,8 @@ def clubs_info(club_id):
     club = Club.get_club_info(club_id).first()
     sports = Sport.get_sports(club_id)
     return render_template("clubs/info.html", club = club, sports = sports)
+
+
 
 
     

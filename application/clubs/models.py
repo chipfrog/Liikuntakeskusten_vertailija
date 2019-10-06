@@ -32,13 +32,31 @@ class Club(Base):
 
     @staticmethod
     def clubs_by_avg_grade():
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) as reviews, " 
+                    "ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
                     "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC;")
         result = db.engine.execute(stmt)
         
         return result
+    
+    @staticmethod
+    def filter_clubs(city, score, sport):
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, "
+                    "COUNT(DISTINCT review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
+                    "FROM club LEFT JOIN review ON review.club_id = club.id "
+                    "LEFT JOIN sports ON sports.club_id = club.id "
+                    "LEFT JOIN sport ON sport.id = sports.sport_id "
+                    "WHERE (:city = '' OR club.city = :city) "
+                    "AND (:sport = '' OR sport.name = :sport) "
+                    "GROUP BY club.id "
+                    "HAVING :score IS NULL OR average >= :score "
+                    "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC").params(city=city, score=score, sport=sport)
+
+        result = db.engine.execute(stmt)
+
+        return result       
 
     @staticmethod
     def my_clubs_by_avg_grade(account_id):
@@ -62,7 +80,9 @@ class Club(Base):
                     "GROUP BY club.id").params(id=club_id)
         result = db.engine.execute(stmt)
 
-        return result                
+        return result
+
+                                 
 
 
 

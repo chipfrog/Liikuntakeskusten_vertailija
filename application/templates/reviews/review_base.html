@@ -5,7 +5,7 @@
 <div class="form-group row">
     {{ form.grade.label(for="inputGrade", class="col-sm-1 col-form-label") }}
     <div class="col-sm-2">
-      {{ form.grade(type="number", class="form-control", id="inputGrade") }}
+      {{ form.grade(type="number", class="form-control", id="inputGrade", placeholder="1 to 5") }}
     </div>
     <div>
       <ul>
@@ -18,7 +18,7 @@
   <div class="form-group row">
     {{ form.review.label(for=inputReview, class="col-sm-1 col-form-label") }}
     <div class="col-sm-7">
-      {{ form.review(class="form-control", id="inputReview", rows="10") }}
+      {{ form.review(class="form-control", id="inputReview", rows="10", placeholder="Write your review here.") }}
     </div>
   </div>
   <div class="form-group row">
