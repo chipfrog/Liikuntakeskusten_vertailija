@@ -2,8 +2,23 @@
 
 {% block body %}
 
-{% if clubs_average_grade is defined %}
-{% for club in clubs_average_grade %}
+<div class="btn-group mb-5" role="group" aria-label="Basic example">
+  <a href="{{ url_for('clubs_index_by_name') }}" type="button" class="btn btn-secondary">Name</a>
+  <a href="{{ url_for('clubs_index_by_city') }}" type="button" class="btn btn-secondary">City</a>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Price
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="{{ url_for('clubs_index_by_price_min') }}">Lowest to highest</a>
+      <a class="dropdown-item" href="{{ url_for('clubs_index_by_price_max') }}">Highest to lowest</a>
+    </div>
+  </div>
+  <a href="{{ url_for('clubs_index') }}" type="button" class="btn btn-secondary">Score</a>
+</div>
+
+{% if clubs is defined %}
+{% for club in clubs %}
 <div class="card bg-light mb-4" style="width: 18rem;">
   <h5 class="card-header card-title">
     {{ club.name }}

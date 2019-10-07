@@ -32,7 +32,7 @@ class Club(Base):
 
     @staticmethod
     def clubs_by_avg_grade():
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) as reviews, " 
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, " 
                     "ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
@@ -40,7 +40,51 @@ class Club(Base):
         result = db.engine.execute(stmt)
         
         return result
-    
+
+    @staticmethod
+    def clubs_by_name():
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, "
+                    "ROUND(AVG(review.grade), 2) AS average "
+                    "FROM club LEFT JOIN review ON review.club_id = club.id "
+                    "GROUP BY club.id "
+                    "ORDER BY club.name ASC;")
+        result = db.engine.execute(stmt)
+
+        return result
+
+    @staticmethod
+    def clubs_by_city():
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, "
+                    "ROUND(AVG(review.grade), 2) AS average "
+                    "FROM club LEFT JOIN review ON review.club_id = club.id "
+                    "GROUP BY club.id "
+                    "ORDER BY club.city ASC;")
+        result = db.engine.execute(stmt)
+
+        return result
+
+    @staticmethod
+    def clubs_by_price_min():
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, "
+                    "ROUND(AVG(review.grade), 2) AS average "
+                    "FROM club LEFT JOIN review ON review.club_id = club.id "
+                    "GROUP BY club.id "
+                    "ORDER BY club.price ASC;")
+        result = db.engine.execute(stmt)
+
+        return result
+
+    @staticmethod
+    def clubs_by_price_max():
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, "
+                    "ROUND(AVG(review.grade), 2) AS average "
+                    "FROM club LEFT JOIN review ON review.club_id = club.id "
+                    "GROUP BY club.id "
+                    "ORDER BY club.price DESC;")
+        result = db.engine.execute(stmt)
+
+        return result
+
     @staticmethod
     def filter_clubs(city, score, price_min, price_max, sport):
         stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, "

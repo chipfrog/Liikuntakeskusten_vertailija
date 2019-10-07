@@ -10,7 +10,23 @@ from application.clubs.forms import CreateClubForm, SearchClubForm
 
 @app.route("/clubs", methods=["GET"])
 def clubs_index():
-    return render_template("clubs/list.html", clubs_average_grade = Club.clubs_by_avg_grade())
+    return render_template("clubs/list.html", clubs = Club.clubs_by_avg_grade())
+
+@app.route("/clubs/byname", methods=["GET"])
+def clubs_index_by_name():
+    return render_template("clubs/list.html", clubs = Club.clubs_by_name())
+
+@app.route("/clubs/bycity", methods=["GET"])
+def clubs_index_by_city():
+    return render_template("clubs/list.html", clubs = Club.clubs_by_city())
+
+@app.route("/clubs/bypricemin", methods=["GET"])
+def clubs_index_by_price_min():
+    return render_template("clubs/list.html", clubs = Club.clubs_by_price_min())
+
+@app.route("/clubs/bypricemax", methods=["GET"])
+def clubs_index_by_price_max():
+    return render_template("clubs/list.html", clubs = Club.clubs_by_price_max())         
 
 @app.route("/clubs/search/", methods=["GET", "POST"])
 def clubs_search():
