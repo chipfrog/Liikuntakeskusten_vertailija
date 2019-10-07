@@ -16,21 +16,28 @@ class Review(Base):
 
     @staticmethod
     def get_users_reviews(user_id):
-        stmt = text("SELECT review.id AS review_id, review.grade, review.review, review.club_id, club.name, club.city FROM review LEFT JOIN club ON review.club_id = club.id WHERE review.account_id = :id").params(id=user_id)
+        stmt = text("SELECT review.id AS review_id, review.grade, review.review, review.club_id, club.name, club.city "
+                    "FROM review LEFT JOIN club ON review.club_id = club.id "
+                    "WHERE review.account_id = :id").params(id=user_id)
         result = db.engine.execute(stmt)
 
         return result
 
     @staticmethod
     def get_users_review_ids(user_id):
-        stmt = text("SELECT review.id FROM review LEFT JOIN club ON review.club_id = club.id WHERE review.account_id = :id").params(id = user_id)    
+        stmt = text("SELECT review.id FROM review LEFT JOIN club ON review.club_id = club.id "
+                    "WHERE review.account_id = :id").params(id = user_id)    
         result = db.engine.execute(stmt)
 
         return result
 
     @staticmethod
     def get_clubs_reviews(club_id):
-        stmt = text("SELECT club.name, club.city, review.grade, review.review, club.city FROM review INNER JOIN club ON review.club_id = club.id WHERE club.id = :id").params(id=club_id)
+        stmt = text("SELECT club.name, club.city, review.grade, review.review, review.date_modified AS review_modified ,account.username FROM review "
+                    "INNER JOIN club ON review.club_id = club.id "
+                    "INNER JOIN account ON account.id = review.account_id "
+                    "WHERE club.id = :id "
+                    "ORDER BY review.date_modified DESC").params(id=club_id)
         result = db.engine.execute(stmt)
         
         return result    

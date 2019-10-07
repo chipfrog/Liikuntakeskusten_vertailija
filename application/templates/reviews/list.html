@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <br>  
+  
   {% for review in reviews %}
-  <div class="card" style="width: 25rem;">
+  <div class="card mb-3" style="width: 25rem;">
     <div class="card-body">
       <h5 class="card-title">{{ review.name }}, {{ review.city }}</h5>
       <h6 class="card-subtitle mb-2">Grade: {{ review.grade }}</h6>
@@ -13,7 +13,7 @@
       </form>
     </div>
   </div>
-  <br>
+  
 {% endfor %}
 
 {% endblock %}

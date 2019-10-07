@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<br>
+
 <form method="POST" action="{{ url_for('clubs_search')}}">
   <div class="form-group">
     {{ form.city.label(for="searchCity") }}
-    {{ form.city(type="text", class="form-control", id="searchCity") }}
+    {{ form.city(type="text", class="form-control", id="searchCity", placeholder="Tampere") }}
   </div>
   <div>
     <ul>
@@ -17,7 +17,7 @@
   <div class="form-row">
     <div class="form-group col-md-3">
       {{ form.score_min.label(for="minScore") }}
-      {{ form.score_min(type="number", class="form-control", id="minScore") }}
+      {{ form.score_min(type="number", class="form-control", id="minScore", placeholder="1 to 5") }}
     </div>
   </div>
   <div>
@@ -30,11 +30,11 @@
   <div class="form-row">
     <div class="form-group col-md-3">
       {{ form.price_min.label(for="priceMin") }}
-      {{ form.price_min(type="number", class="form-control", id="priceMin") }}
+      {{ form.price_min(type="number", class="form-control", id="priceMin", placeholder="0 to 1000") }}
     </div>
     <div class="form-group col-md-3">
       {{ form.price_max.label(for="priceMax") }}
-      {{ form.price_max(type="number", class="form-control", id="priceMax") }}
+      {{ form.price_max(type="number", class="form-control", id="priceMax", placeholder="0 to 1000") }}
     </div>
   </div>
   <div class="form-row">
@@ -55,7 +55,7 @@
   </div>
   <div class="form-group">
     {{ form.sport.label(for="searchSport") }}
-    {{ form.sport(type="text", class="form-control", id="searchSport") }}
+    {{ form.sport(type="text", class="form-control", id="searchSport", placeholder="Nyrkkeily") }}
   </div>
   <div>
     <ul>

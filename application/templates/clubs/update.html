@@ -2,7 +2,7 @@
 {% block body %}
 
 {{ error }}
-<br>
+
 <form method="POST" action="{{ url_for('clubs_update', club_id = club_id)}}">
   {% block form_content %}
     {{ super() }}  

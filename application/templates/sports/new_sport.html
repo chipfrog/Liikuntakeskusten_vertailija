@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<br>
+
 <form method="POST" action="{{ url_for('add_sport', club_id=club_id) }}">
   <div class="form-group">
     {% if message is defined %}

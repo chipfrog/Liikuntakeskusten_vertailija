@@ -1,6 +1,6 @@
 {% extends "/reviews/review_base.html" %}
 {% block body %}
-<br>
+
 <form method="POST" action="{{ url_for('reviews_create', club_id=club_id) }}">
   {% block form_content %}
     {{ super() }}
