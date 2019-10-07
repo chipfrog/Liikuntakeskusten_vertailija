@@ -12,7 +12,8 @@ class Sport(Base):
     def get_sports(club_id):
         stmt = text("SELECT name, id FROM sports "
                     "LEFT JOIN sport ON sport.id = sports.sport_id "
-                    "WHERE sports.club_id = :id").params(id=club_id)
+                    "WHERE sports.club_id = :id "
+                    "ORDER BY name ASC").params(id=club_id)
 
         result = db.engine.execute(stmt)
         return result

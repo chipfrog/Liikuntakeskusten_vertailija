@@ -2,6 +2,10 @@
 
 {% block body %}
 
+{% if clubs is defined %}
+{% if no_filtering is defined %}
+{% else %}
+
 <div class="btn-group mb-5" role="group" aria-label="Basic example">
   <a href="{{ url_for('clubs_index_by_name') }}" type="button" class="btn btn-secondary">Name</a>
   <a href="{{ url_for('clubs_index_by_city') }}" type="button" class="btn btn-secondary">City</a>
@@ -17,7 +21,8 @@
   <a href="{{ url_for('clubs_index') }}" type="button" class="btn btn-secondary">Score</a>
 </div>
 
-{% if clubs is defined %}
+{% endif %}
+
 {% for club in clubs %}
 
 <div class="card bg-light mb-4" style="width: 18rem;">

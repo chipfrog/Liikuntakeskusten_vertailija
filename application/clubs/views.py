@@ -54,7 +54,12 @@ def clubs_search():
         message = "No results..."
         return render_template("clubs/search.html", form=form, message=message)
     
-    return render_template("clubs/list.html", clubs = clubs)
+    # Otetaan seurojen järjestäminen pois päältä, sillä jokainen järjestelynappi (name, city jne.)tekee uuden 
+    # SQL-kyselyn. Järjestely ei siis toimi kertaalleen filteröityyn SQL-kyselyyn (clubs).
+
+    no_filtering = 0    
+    
+    return render_template("clubs/list.html", clubs = clubs, no_filtering = no_filtering)
 
 # Urheiluseuran luominen
 @app.route("/clubs/new", methods=["POST", "GET"])

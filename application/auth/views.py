@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
-from application import app, db
+from application import app, db, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm, CreateUserForm
 
@@ -56,6 +56,12 @@ def auth_create():
     db.session().commit()
 
     return redirect(url_for("auth_login"))
+
+
+
+
+
+    
 
 
         
