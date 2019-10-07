@@ -48,7 +48,7 @@ def clubs_search():
     # Etsitään seuroja annetuilla kriteereillä
     clubs = Club.filter_clubs(city, score, price_min, price_max, sport)
     
-    return render_template("clubs/list.html", clubs_average_grade = clubs)           
+    return render_template("clubs/list.html", clubs = clubs)           
 
 @app.route("/clubs/new", methods=["POST", "GET"])
 @login_required(role="owner")

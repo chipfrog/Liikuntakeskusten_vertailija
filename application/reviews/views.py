@@ -63,7 +63,7 @@ def reviews_create(club_id):
     db.session().add(r)
     db.session().commit()
 
-    return redirect(url_for("reviews_index"))
+    return redirect(url_for("clubs_index"))
 
 @app.route("/reviews/delete/<review_id>/", methods=["POST"])
 @login_required(role="user")

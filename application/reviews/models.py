@@ -25,7 +25,8 @@ class Review(Base):
 
     @staticmethod
     def get_users_review_ids(user_id):
-        stmt = text("SELECT review.id FROM review LEFT JOIN club ON review.club_id = club.id "
+        stmt = text("SELECT club.id FROM review "
+                    "LEFT JOIN club ON review.club_id = club.id "
                     "WHERE review.account_id = :id").params(id = user_id)    
         result = db.engine.execute(stmt)
 
