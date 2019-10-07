@@ -8,6 +8,7 @@ from application.reviews.models import Review
 from application.reviews.forms import ReviewForm
 from application.clubs.forms import CreateClubForm, SearchClubForm
 
+# Tietokannan kaikkien urheiluseurojen järjestäminen eri kriteerein
 @app.route("/clubs", methods=["GET"])
 def clubs_index():
     return render_template("clubs/list.html", clubs = Club.clubs_by_avg_grade())
@@ -26,8 +27,9 @@ def clubs_index_by_price_min():
 
 @app.route("/clubs/bypricemax", methods=["GET"])
 def clubs_index_by_price_max():
-    return render_template("clubs/list.html", clubs = Club.clubs_by_price_max())         
+    return render_template("clubs/list.html", clubs = Club.clubs_by_price_max())
 
+# Käyttäjän antamien kriteerien mukaisten urheiluseurojen hakeminen
 @app.route("/clubs/search/", methods=["GET", "POST"])
 def clubs_search():
     if request.method == "GET":
@@ -47,9 +49,14 @@ def clubs_search():
 
     # Etsitään seuroja annetuilla kriteereillä
     clubs = Club.filter_clubs(city, score, price_min, price_max, sport)
-    
-    return render_template("clubs/list.html", clubs = clubs)           
 
+    if len(clubs) == 0:
+        message = "No results..."
+        return render_template("clubs/search.html", form=form, message=message)
+    
+    return render_template("clubs/list.html", clubs = clubs)
+
+# Urheiluseuran luominen
 @app.route("/clubs/new", methods=["POST", "GET"])
 @login_required(role="owner")
 def clubs_create():
@@ -74,6 +81,7 @@ def clubs_create():
 
     return redirect(url_for("clubs_my_clubs"))
 
+# Käyttäjän hallinnoimien seurojen listaaminen
 @app.route("/clubs/myclubs", methods=["GET"])
 @login_required(role="owner")
 def clubs_my_clubs():
@@ -100,6 +108,7 @@ def clubs_edit(club_id):
 
     return render_template("clubs/update.html", form=form, club_id=club_id)
 
+# Seuran tietojen päivittäminen
 @app.route("/clubs/update/<club_id>/", methods=["POST"])
 @login_required(role="owner")
 def clubs_update(club_id):
@@ -123,8 +132,9 @@ def clubs_update(club_id):
 
     db.session().commit()
 
-    return redirect(url_for("clubs_my_clubs")) 
-
+    return redirect(url_for("clubs_my_clubs"))
+     
+# Seuran poistaminen tietokannasta
 @app.route("/clubs/delete/<club_id>/", methods=["POST"])
 @login_required(role="owner")
 def clubs_delete(club_id):
@@ -145,10 +155,11 @@ def clubs_delete(club_id):
 
     return redirect(url_for("clubs_my_clubs"))        
 
+# Seuran saamien arvostelujen listaaminen
 @app.route("/clubs/reviews/<club_id>/", methods=["GET"])
 def clubs_reviews(club_id):
     return render_template("clubs/club_reviews.html", reviews = Review.get_clubs_reviews(club_id))
-
+# Seuran koostesivu
 @app.route("/clubs/info/<club_id>/", methods=["GET"])
 def clubs_info(club_id):
     club = Club.get_club_info(club_id).first()

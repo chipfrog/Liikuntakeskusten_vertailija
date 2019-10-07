@@ -37,7 +37,10 @@ class Club(Base):
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
                     "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC;")
-        result = db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
         
         return result
 
@@ -48,7 +51,10 @@ class Club(Base):
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
                     "ORDER BY club.name ASC;")
-        result = db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
 
         return result
 
@@ -59,7 +65,10 @@ class Club(Base):
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
                     "ORDER BY club.city ASC;")
-        result = db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
 
         return result
 
@@ -70,7 +79,10 @@ class Club(Base):
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
                     "ORDER BY club.price ASC;")
-        result = db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
 
         return result
 
@@ -81,7 +93,10 @@ class Club(Base):
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
                     "ORDER BY club.price DESC;")
-        result = db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
 
         return result
 
@@ -100,8 +115,11 @@ class Club(Base):
                     "HAVING :score IS NULL OR ROUND(AVG(review.grade), 2) >= :score "
                     "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC").params(city=city, score=score, price_min=price_min, price_max=price_max,sport=sport)
 
-        result = db.engine.execute(stmt)
-
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
+        
         return result       
 
     @staticmethod
@@ -111,7 +129,10 @@ class Club(Base):
                     "WHERE club.account_id = :id "
                     "GROUP BY club.id "
                     "ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC").params(id=account_id)
-        result = db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
 
         return result
 
