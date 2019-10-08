@@ -25,6 +25,14 @@ Käyttäjän luomisen jälkeen avautuu kirjautumissivu suoraan. Tähän kirjoite
 ## Kirjautuneet käyttäjät
 Kirjautuneella käyttäjällä on käytössä kaikki samat toiminnot kuin kirjautumattomallakin ja lisäksi joitain ekstratoimintoja käyttäjäroolista riippuen.
 
+## User-rooli
+### Arvostelun kirjoittaminen
+Aluksi haetaan haluttu urheiluseura joko aiemmin mainitun _List sport clubs_ - tai _Search_ - painikkeen kautta. Korttinäkymään on nyt ilmestynyt _Show reviews_- ja _Info_ -painikkeiden lisäksi _Review_ -nappi. Napista aukeaa lomakesivu, jolle arvostelu voidaan kirjoittaa. Kohtaan _Grade_ annetaan arvosana kokonaislukuna väliltä 1-5 ja kohtaan _Review_ kirjoitetaan sanallinen arvostelu. Vain _Grade_ on pakko täyttää. Arvostelu lähetetään _Submit_-napista.
+
+### Arvostelujen tarkastelu, editointi ja poistaminen
+Yläpalkin _List my reviews_ listaa nimensä mukaisesti käyttäjän kaikki arvostelut. Jokaisen arvostelun kohdassa on painike _Edit_, josta pääsee muokkaamaan arvostelua (arvosanaa ja sanallista osuutta). Muutos tallennetaan _Submit_ -painikkeella. Arvostelun voi poistaa tietokannasta _Submit_ -painikkeen alla olevasta _Delete_ -napista. Kumpikin nappi palauttaa takaisin omien arvostelujen listaukseen. 
+
+
 
 
 
