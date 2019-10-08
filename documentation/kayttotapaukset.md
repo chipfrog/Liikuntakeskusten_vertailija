@@ -83,7 +83,8 @@ VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?)
 ```
 UPDATE club SET date_modified=CURRENT_TIMESTAMP, city=?, tel=? WHERE club.id = ?
 ```
-* Seuran poistaminen tietokannasta
+* Seuran poistaminen tietokannasta; poistetaan aluksi liitostaulusta sports kaikki seuraan liittyvät rivit, eli kytkökset poistettavan seuran ja urheilulajien välillä
 ```
+
 ```
 
