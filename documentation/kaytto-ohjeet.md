@@ -17,4 +17,14 @@ Seurojen listaaminen ja haku tuottaa joukon kortteja, jotka sisältävät joitak
 Kortin alareunassa on _Info_-painikkeen lisäksi _Show reviews_ painike, josta avautuu lista kaikista seuran arvosteluista. Uusin tai viimeksi editoitu arvostelu näkyy ensimmäisenä. Arvostelussa näkyy arvostelijan nimimerkki, arvosana, sanallinen arvio ja kirjoitusajankohta.  
 
 ### Uuden käyttäjän luominen
-Yläpalkin oikeasta reunasta painetaan _Login_-painiketta, josta päästään kirjautumissivulle. Sivulla painetaan kohtaa _New User_, josta aukeaa lomakesivu uuden käyttäjän luontiin. Kaikki kentät ovat pakollisia. Nimimerkin ja sähköpostin tulee olla uniikkeja ja sovellus ilmoittaa jos ne löytyvät jo tietokannasta. Sovellus ilmoittaa myös, jos syötetyt merkkijonot ovat liian pitkiä. Tässä kohtaa myös valitaan käyttärooli. Roolilla _User_ käyttäjä voi kirjoittaa arvosteluja liikuntaseuroista, sekä tarvittaessa editoida ja poistaa näitä. Roolilla _Owner_ käyttäjä voi luoda uusia liikuntakeskuksia, editoida näiden yhteystietoja ja saatavilla olevia liikuntamuotoja. Arvostelujen tekeminen ei onnistu
+Yläpalkin oikeasta reunasta painetaan _Login_-painiketta, josta päästään kirjautumissivulle. Sivulla painetaan kohtaa _New User_, josta aukeaa lomakesivu uuden käyttäjän luontiin. Kaikki kentät ovat pakollisia. Nimimerkin ja sähköpostin tulee olla uniikkeja ja sovellus ilmoittaa jos ne löytyvät jo tietokannasta. Sovellus ilmoittaa myös, jos syötetyt merkkijonot ovat liian pitkiä. Tässä kohtaa myös valitaan käyttärooli. Roolilla _User_ käyttäjä voi kirjoittaa arvosteluja liikuntaseuroista, sekä tarvittaessa editoida ja poistaa näitä. Roolilla _Owner_ käyttäjä voi luoda uusia liikuntakeskuksia, editoida näiden yhteystietoja ja saatavilla olevia liikuntamuotoja. Arvostelujen tekeminen ei onnistu.
+
+### Sisäänkirjautuminen
+Käyttäjän luomisen jälkeen avautuu kirjautumissivu suoraan. Tähän kirjoitetaan nimimerkki ja salasana ja painetaan _Login_ -painiketta. Jos nimimerkki ja salasana löytyvät tietokannasta ja täsmäävät, pääsee käyttäjä kirjautumaan sisään. Kirjautumisikkunaan pääsee myös suoraan oikean yläreunan _Login_ -painikkeella.
+
+## Kirjautuneet käyttäjät
+Kirjautuneella käyttäjällä on käytössä kaikki samat toiminnot kuin kirjautumattomallakin ja lisäksi joitain ekstratoimintoja käyttäjäroolista riippuen.
+
+
+
+
