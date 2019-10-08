@@ -8,7 +8,10 @@ Omistajalla puolestaan tarkoitetaan käyttäjää, esim. liikuntakeskuksen henki
 * Omistajana voin kirjautua sivulle henkilökohtaisella käyttäjätunnuksellani. Liikuntakeskusten haun ja arvostelujen tarkastelun lisäksi pääsen näkymään, jossa voin muokata hallinnoimani liikuntakeskuksen tietoja.
 
 ### Liikuntakeskusten hakeminen
-* Käyttäjänä voin hakea liikuntakeskuksia eri kriteerien perusteella. Hakunäkymässä on omat kenttänsä liikuntakeskuksen nimelle, lajeille ja kuukausimaksulle. Mitä useamman kentän täytän, sitä tarkemmin rajattuja tuloksia saan. Voin esimerkiksi etsiä liikuntakeskusta, jonka kuukausimaksu on maksimissaan 60€, ja jossa voi harrastaa nyrkkeilyä. Sovellus listaa kaikki ehdot täyttävät keskukset tai kertoo ettei sellaisia löytynyt. 
+* Käyttäjänä voin hakea liikuntakeskuksia eri kriteerien perusteella. Hakunäkymässä on omat kenttänsä liikuntakeskuksen nimelle, lajeille ja kuukausimaksulle. Mitä useamman kentän täytän, sitä tarkemmin rajattuja tuloksia saan. Voin esimerkiksi etsiä liikuntakeskusta, jonka kuukausimaksu on maksimissaan 60€, ja jossa voi harrastaa nyrkkeilyä. Sovellus listaa kaikki ehdot täyttävät keskukset tai kertoo ettei sellaisia löytynyt.
+
+### Liikuntakeskusten listaaminen
+* Käyttäjän voin listata kaikki tietokannassa olevat liikuntaseurat. Seurat järjestää voi nimen, kaupungin, hinnan ja arvosanojen keskiarvon mukaan.
 
 ### Arvostelut
 * Harrastajana voin kirjoittaa testaamalleni liikuntakeskukselle julkisen arvostelun, 
@@ -22,6 +25,7 @@ tyytyväisyyden keskukseen.
 
 ### Liikuntakeskuksen hallinnointi
 * Omistajana voin lisätä liikuntakeskuksen tietokantaan. Lisäämisen yhteydessä annan keskuksen yleiset tiedot, kuten nimen osoitteen, yhteystiedot jne. Voin myös päivittää tietoja myöhemmin, jos ne muuttuvat. 
-* Omistajana voin lisätä lajeja, joita hallinnoimassani liikuntakeskuksessa on tarjolla, jotta mahdolliset asiakkaat saavat tarkempaa ja ajantasaista tietoa keskuksesta. Jos jokin laji poistuu keskuksen tarjonnasta, voin myös poistaa sen.    
+* Omistajana voin lisätä lajeja, joita hallinnoimassani liikuntakeskuksessa on tarjolla, jotta mahdolliset asiakkaat saavat tarkempaa ja ajantasaista tietoa keskuksesta. Jos jokin laji poistuu keskuksen tarjonnasta, voin myös poistaa sen.
+* Omistajana voin poistaa hallinnoimani liikuntakeskuksen, jos se lopettaa toimintansa. Poistamisen yhteydessä poistuvat myös keskukseen liittyvät arvostelut.
 
 
