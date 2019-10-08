@@ -22,6 +22,9 @@ Yläpalkin oikeasta reunasta painetaan _Login_-painiketta, josta päästään ki
 ### Sisäänkirjautuminen
 Käyttäjän luomisen jälkeen avautuu kirjautumissivu suoraan. Tähän kirjoitetaan nimimerkki ja salasana ja painetaan _Login_ -painiketta. Jos nimimerkki ja salasana löytyvät tietokannasta ja täsmäävät, pääsee käyttäjä kirjautumaan sisään. Kirjautumisikkunaan pääsee myös suoraan oikean yläreunan _Login_ -painikkeella.
 
+### Uloskirjautuminen
+Kun käyttäjä on kirjautunut sisään, oikeaan yläreunaan ilmestyy _Logout_ -painike. Tätä painamalla käyttäjä kirjautuu ulos.
+
 ## Kirjautuneet käyttäjät
 Kirjautuneella käyttäjällä on käytössä kaikki samat toiminnot kuin kirjautumattomallakin ja lisäksi joitain ekstratoimintoja käyttäjäroolista riippuen.
 
@@ -30,7 +33,25 @@ Kirjautuneella käyttäjällä on käytössä kaikki samat toiminnot kuin kirjau
 Aluksi haetaan haluttu urheiluseura joko aiemmin mainitun _List sport clubs_ - tai _Search_ - painikkeen kautta. Korttinäkymään on nyt ilmestynyt _Show reviews_- ja _Info_ -painikkeiden lisäksi _Review_ -nappi. Napista aukeaa lomakesivu, jolle arvostelu voidaan kirjoittaa. Kohtaan _Grade_ annetaan arvosana kokonaislukuna väliltä 1-5 ja kohtaan _Review_ kirjoitetaan sanallinen arvostelu. Vain _Grade_ on pakko täyttää. Arvostelu lähetetään _Submit_-napista.
 
 ### Arvostelujen tarkastelu, editointi ja poistaminen
-Yläpalkin _List my reviews_ listaa nimensä mukaisesti käyttäjän kaikki arvostelut. Jokaisen arvostelun kohdassa on painike _Edit_, josta pääsee muokkaamaan arvostelua (arvosanaa ja sanallista osuutta). Muutos tallennetaan _Submit_ -painikkeella. Arvostelun voi poistaa tietokannasta _Submit_ -painikkeen alla olevasta _Delete_ -napista. Kumpikin nappi palauttaa takaisin omien arvostelujen listaukseen. 
+Yläpalkin _List my reviews_ listaa nimensä mukaisesti käyttäjän kaikki arvostelut. Jokaisen arvostelun kohdassa on painike _Edit_, josta pääsee muokkaamaan arvostelua (arvosanaa ja sanallista osuutta). Muutos tallennetaan _Submit_ -painikkeella. Arvostelun voi poistaa tietokannasta _Submit_ -painikkeen alla olevasta _Delete_ -napista. Kumpikin nappi palauttaa takaisin omien arvostelujen listaukseen.
+
+## Owner-rooli
+### Seuran luominen
+Uuden seuran luomiseen päästään yläpalkin painikkeesta _Create a new sports club_. Seuralle täytyy antaa nimi, kapunki ja kuukausimaksu. Muut kentät ovat vapaaehtoisia. Seuran nimen tulee olla uniikki. Pakollisten kenttien täyttämisen jälkeen painetaan _Submit_ -nappia.
+
+### Omien seurojen tarkastelu
+Omien seurojen tarkasteluun päästään suoraan uuden seuran luomisen jälkeen ja yläpalkin napista _My Clubs_. Sivu listaa kaikki käyttäjän luomat seurat korteittain. Korteissa on joitain seuran perustietoja, sekä painikkeita jatkotoiminnoille.
+
+### Liikuntalajien lisääminen ja poistaminen
+Kun omat seurat on listattu _My Clubs_ -painikkeen kautta, voidaan mille tahansa käyttäjän omistamalle seuralle lisätä liikuntalajeja painamalla seuran kortin _Add Sport_-painiketta. Painike listaa seuralle jo lisätyt lajit ja antaa kentän johon voi kirjoittaa lisättävän lajin nimen. Tämän jälkeen painetaan _Add_-painiketta ja lisätty laji ilmestyy seuran lajien joukkoon, mikäli sitä ei siellä jo ennestään ole (isot ja pienet kirjaimet vaikuttavat). Jokaisen lisätyn lajin vieressä on _Delete_-nappi, jota painamalla lajin voi poistaa kyseisen seuran tarjonnasta.
+
+### Seuran tietojen editointi ja seuran poistaminen
+_My Clubs_ -näkymästä valitaan haluttu seura painamalla _Edit_ -painiketta. Aukeaa sama lomake, jolla seura luotiin, mutta se sisältää jo lisätyt tiedot. Tietoja voidaan vapaasti muokata ja lisätä. Muutokset tallennetaan _Save changes_ -painikkeella. Jos seura halutaan poistaa tietokannasta, painetaan _Save changes_ -napin alla olevaa _Delete_ -painiketta. Seuran lisäksi poistuvat myös kaikki seuraan liittyvät arvostelut. 
+
+### Seuran arvostelujen tarkastelu
+_My Clubs_ -näkymästä valitaan haluttu seura ja painetaan _Reviews_ -painiketta. Kaikki seuran saamat arvostelut listataan uusimmasta vanhimpaan. 
+
+
 
 
 
