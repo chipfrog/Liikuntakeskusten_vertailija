@@ -35,15 +35,55 @@ tyytyväisyyden keskukseen.
 INSERT INTO account (date_created, date_modified, name, email, username, password, role) 
 VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?)
 ```
-* Sisäänkirjautuminen: tarkistetaan aluksi, että syötetyllä nimimerkillä ja salasanalla löytyy käyttäjä tietokannasta
+* Sisäänkirjautuminen: haetaan käyttäjä tietokannasta
 ```
 SELECT account.id AS account_id, account.date_created AS account_date_created, account.date_modified AS account_date_modified, account.name AS account_name, account.email AS account_email, account.username AS account_username, account.password AS account_password, account.role AS account_role 
 FROM account 
-WHERE account.username = ? AND account.password = ?
+WHERE account.id = ?
 ```
-
-
-
-
-
+## Arvostelut
+* Uuden arvostelun lisääminen
+```
+INSERT INTO review (date_created, date_modified, grade, review, account_id, club_id) 
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
+```
+* Käyttäjän kaikkien arvostelujen listaaminen
+```
+SELECT review.id AS review_id, review.grade, review.review, review.club_id, club.name, club.city 
+FROM review LEFT JOIN club ON review.club_id = club.id 
+WHERE review.account_id = ?
+```
+* Arvostelun hakeminen tietokannasta muokkaamista tai poistamista varten
+```
+SELECT review.id AS review_id, review.date_created AS review_date_created, review.date_modified AS review_date_modified, review.grade AS review_grade, review.review AS review_review, review.account_id AS review_account_id, review.club_id AS review_club_id 
+FROM review 
+WHERE review.id = ?
+```
+* Arvostelun muokkaaminen; muutosten tallentaminen tietokantaan
+```
+UPDATE review SET date_modified=CURRENT_TIMESTAMP, grade=?, review=? WHERE review.id = ?
+```
+* Arvostelun poistaminen tietokannasta
+```
+DELETE FROM review WHERE review.id = ?
+```
+## Urheiluseurat
+* Uuden seuran luominen, tarkistetaan aluksi ettei samannimistä seuraa ole olemassa.
+```
+SELECT club.id AS club_id, club.date_created AS club_date_created, club.date_modified AS club_date_modified, club.name AS club_name, club.city AS club_city, club.address AS club_address, club.email AS club_email, club.tel AS club_tel, club.price AS club_price, club.account_id AS club_account_id 
+FROM club 
+WHERE club.name = ?
+```
+Lisätään uusi seura tietokantaan.
+```
+INSERT INTO club (date_created, date_modified, name, city, address, email, tel, price, account_id) 
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?)
+```
+* Seuran tietojen päivittäminen (tässä tapauksessa kaksi kohtaa, voi olla useampiakin)
+```
+UPDATE club SET date_modified=CURRENT_TIMESTAMP, city=?, tel=? WHERE club.id = ?
+```
+* Seuran poistaminen tietokannasta
+```
+```
 
