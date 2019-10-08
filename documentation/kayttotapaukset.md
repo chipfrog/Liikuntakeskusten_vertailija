@@ -3,7 +3,7 @@ Alla kuvatuissa käyttötapauksissa puhutaan harrastajista ja omistajista. Harra
 Omistajalla puolestaan tarkoitetaan käyttäjää, esim. liikuntakeskuksen henkilökuntaan kuuluvaa henkilöä, jolla on oikeus muokata "omistamansa" liikuntakeskuksen tietoja. Käyttäjällä tarkoitetaan mihin tahansa käyttäjäryhmään kuuluvaa henkilöä.
 
 ### Kirjautuminen ja käyttäjät
-* Käyttäjänä pääsen luomaan itselleni sovellukseen profiilin, johon kuuluu käyttäjästatus (harrastaja tai omistaja), sekä uniikki käyttäjätunnus. Profiilin luomisen jälkeen pääsen käyttämään sovelluksen muita toimintoja kirjautumalla sisään.   
+* Käyttäjänä pääsen luomaan itselleni sovellukseen profiilin, johon kuuluu käyttäjärooli (harrastaja tai omistaja), sekä uniikki käyttäjätunnus. Profiilin luomisen jälkeen pääsen käyttämään sovelluksen muita toimintoja kirjautumalla sisään.   
 * Harrastajana voin kirjautua sivulle henkilökohtaisella käyttäjätunnuksellani. Sovelluksen normaalin toiminnallisuuden lisäksi (arvostelujen antaminen, liikuntakeskusten haku) pääsen käsiksi personoituun näkymään, josta näen kaikki antamani arvostelut ja voin muokata omia tietojani. 
 * Omistajana voin kirjautua sivulle henkilökohtaisella käyttäjätunnuksellani. Liikuntakeskusten haun ja arvostelujen tarkastelun lisäksi pääsen näkymään, jossa voin muokata hallinnoimani liikuntakeskuksen tietoja.
 
@@ -29,5 +29,21 @@ tyytyväisyyden keskukseen.
 * Omistajana voin poistaa hallinnoimani liikuntakeskuksen, jos se lopettaa toimintansa. Poistamisen yhteydessä poistuvat myös keskukseen liittyvät arvostelut.
 
 # SQL-kyselyt
+## Käyttäjäprofiilit
+* Uuden käyttäjän lisääminen tietokantaan
+```
+INSERT INTO account (date_created, date_modified, name, email, username, password, role) 
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?)
+```
+* Sisäänkirjautuminen: tarkistetaan aluksi, että syötetyllä nimimerkillä ja salasanalla löytyy käyttäjä tietokannasta
+```
+SELECT account.id AS account_id, account.date_created AS account_date_created, account.date_modified AS account_date_modified, account.name AS account_name, account.email AS account_email, account.username AS account_username, account.password AS account_password, account.role AS account_role 
+FROM account 
+WHERE account.username = ? AND account.password = ?
+```
+
+
+
+
 
 
