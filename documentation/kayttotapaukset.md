@@ -28,4 +28,6 @@ tyytyväisyyden keskukseen.
 * Omistajana voin lisätä lajeja, joita hallinnoimassani liikuntakeskuksessa on tarjolla, jotta mahdolliset asiakkaat saavat tarkempaa ja ajantasaista tietoa keskuksesta. Jos jokin laji poistuu keskuksen tarjonnasta, voin myös poistaa sen.
 * Omistajana voin poistaa hallinnoimani liikuntakeskuksen, jos se lopettaa toimintansa. Poistamisen yhteydessä poistuvat myös keskukseen liittyvät arvostelut.
 
+# SQL-kyselyt
+
 
