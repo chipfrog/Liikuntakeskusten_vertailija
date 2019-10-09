@@ -8,7 +8,7 @@ class User(Base):
     name = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(40), unique=True, nullable=False)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    password = db.Column(db.String(20), nullable=False)
+    password = db.Column(db.String(400), nullable=False)
     role = db.Column(db.String(10), nullable=False)
     
     clubs = db.relationship("Club", backref='account', lazy=True)
