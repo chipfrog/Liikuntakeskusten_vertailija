@@ -16,7 +16,6 @@ class CreateUserForm(FlaskForm):
     username = StringField("Username", [validators.Length(min=4, max=20)])
     password = PasswordField("Password", [validators.Length(min=4, max=20)])
     role = RadioField("User role",  [validators.input_required()], choices=[('user', 'User'), ('owner', 'Owner')])
-    # role = StringField("User role", [validators.input_required()])
-
+    
     class Meta:
         csrf = False         

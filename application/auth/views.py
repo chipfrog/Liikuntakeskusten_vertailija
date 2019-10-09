@@ -48,6 +48,7 @@ def auth_create():
     email = form.email.data
     password = form.password.data
 
+    # Salataan salasana
     password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
 
     # Varmistetaan, että username ja email ovat uniikkeja
