@@ -17,6 +17,8 @@ Toimintoja:
 
 [Käyttöohje](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/manuaali.md)
 
+[Asennusohje](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/asennusohje.md)
+
 [Heroku-sovellus](https://liikuntakeskusten-vertailija.herokuapp.com)
 
 Herokussa on valmiina testikäyttäjä, mutta uudenkin käyttäjän luominen onnistuu.
