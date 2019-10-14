@@ -169,8 +169,9 @@ def clubs_reviews(club_id):
 def clubs_info(club_id):
     club = Club.get_club_info(club_id).first()
     sports = Sport.get_sports(club_id)
+    reviews = Review.get_clubs_reviews(club_id)
     
-    return render_template("clubs/info.html", club = club, sports = sports)
+    return render_template("clubs/info.html", club = club, sports = sports, reviews = reviews)
 
 
 

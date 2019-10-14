@@ -28,6 +28,9 @@
       <button class="btn btn-primary ml-2" type="button" data-toggle="collapse" data-target="#contact" aria-expanded="false" aria-controls="collapseExample">
           Contact information
       </button>
+      <button class="btn btn-primary ml-2" type="button" data-toggle="collapse" data-target="#reviews" aria-expanded="false" aria-controls="collapseExample">
+          Reviews
+      </button>
     </p>
     <div class="container" id="group">
       <div class="collapse" id="sports" data-parent="#group">
@@ -53,6 +56,25 @@
             <td>Phone: {{ club.tel }}</td>
           </tr>
         </table>
+      </div>
+      <div class="collapse" id="reviews" data-parent="#group">
+        <br>
+        {% for review in reviews %}
+        <div class="card" style="width: 25rem;">
+          <div class="card-header">
+            {{ review.username }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ review.name }}, {{ review.city }}</h5>
+            <h6 class="card-subtitle mb-2">Score: {{ review.grade }}</h6>
+            <p class="card-text">{{ review.review }}</p>
+          </div>
+          <div class="card-footer text-muted">
+            {{ review.review_modified }}
+          </div>
+        </div>
+        <br>
+      {% endfor %}
       </div>
     </div>  
 </div>
