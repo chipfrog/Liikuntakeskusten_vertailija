@@ -1,6 +1,9 @@
-from flask import render_template
-from application import app
+from application import app, db
+from flask import redirect, render_template, request
+from application.models import Base
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    info = Base.general_info()
+    
+    return render_template("index.html", info=info[0])

@@ -1,5 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h2>Tervetuloa!</h2>
+<div>
+  <p>Tietokannassa on tällä hetkellä:</p>
+  <ul class="list-group-flush">
+    <li class="list-group-item">Liikuntakeskuksia: {{ info.clubs }} </li>
+    <li class="list-group-item">Liikuntalajeja: {{info.dif_sports}} </li>
+    <li class="list-group-item">Kaupunkeja: {{info.cities}} </li>
+    <li class="list-group-item">Rekisteröitynenitä jäseniä: {{info.users}}</li>
+  </ul>
+</div>
   
 {% endblock %}

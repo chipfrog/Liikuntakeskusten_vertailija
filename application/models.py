@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy import text
 
 class Base (db.Model):
 
@@ -8,3 +9,18 @@ class Base (db.Model):
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
         onupdate=db.func.current_timestamp())
+
+
+    @staticmethod
+    def general_info():
+        stmt = text("SELECT COUNT(DISTINCT account.id) AS users, COUNT(DISTINCT club.id) AS clubs, "
+                "COUNT(DISTINCT club.city) AS cities, COUNT(DISTINCT sport.id) AS dif_sports "
+                "FROM account, club, sport;")
+    
+        res = db.engine.execute(stmt)
+        result = []
+        
+        for row in res:
+            result.append(row)
+
+        return result    
