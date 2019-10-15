@@ -31,7 +31,7 @@
     {% for sport in sports %}
     <div class="card" style="width: 15rem;">
         <div class="card-body">
-          <h6 class="card-title">{{ sport.name }}</h6>
+          <h6 class="card-title">{{ sport.name.capitalize() }}</h6>
           <form method="POST" action="{{ url_for('sports_delete_association', sport_id = sport.id, club_id = club_id) }}">
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>

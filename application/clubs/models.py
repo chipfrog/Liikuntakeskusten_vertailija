@@ -149,6 +149,19 @@ class Club(Base):
 
         return result
 
+    @staticmethod
+    def club_has_sport(club_id):
+        stmt = text("SELECT sport.name FROM sport "
+                    "LEFT JOIN sports ON sports.sport_id = sport.id "
+                    "WHERE sports.club_id = :id").params(id = club_id)
+
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row.name)
+
+        return result                   
+
                                  
 
 

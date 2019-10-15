@@ -20,22 +20,32 @@ def add_sport(club_id):
         return render_template("sports/new_sport.html", form=form, club_id=club_id, sports=Sport.get_sports(club_id))
 
     c = Club.query.get(club_id)
-    s = Sport(form.name.data)
+    s = Sport(form.name.data.lower())
 
     if not c.account_id == current_user.id:
         return render_template("error.html")
-
+    
+    # Tarkistetaan löytyykö lajia sport-taulusta ollenkaann
     sportExists = Sport.query.filter(Sport.name == s.name).first()
     
     if sportExists is None:
+
+        # Lisätään laji sport-tauluun ja liitostauluun
         c.sports.append(s)
         db.session().add(c)
         db.session().commit()
 
         message = s.name + " added successfully!"
 
+        return render_template("sports/new_sport.html", form=form, club_id=club_id, message=message, sports=Sport.get_sports(club_id))
+
+    # Tarkistetaan löytyyko liitostaulusta jo yhteys lajin ja seuran välillä
+    clubs_sports = Club.club_has_sport(club_id)
+    if s.name in clubs_sports:
+        message = s.name + " has already been added!"
         return render_template("sports/new_sport.html", form=SportForm(), club_id=club_id, message=message, sports=Sport.get_sports(club_id))
-        
+
+    # Lisätään uusi yhteys lajin ja seuran välille sports-liitostauluun    
     c.sports.append(sportExists)
     db.session().add(c)
     db.session().commit()

@@ -63,7 +63,7 @@ def clubs_search():
     score = form.score_min.data
     price_min = form.price_min.data
     price_max = form.price_max.data
-    sport = form.sport.data
+    sport = form.sport.data.lower()
 
     # Etsitään seuroja annetuilla kriteereillä
     clubs = Club.filter_clubs(city, score, price_min, price_max, sport)
@@ -182,6 +182,7 @@ def clubs_delete(club_id):
 @app.route("/clubs/reviews/<club_id>/", methods=["GET"])
 def clubs_reviews(club_id):
     return render_template("clubs/club_reviews.html", reviews = Review.get_clubs_reviews(club_id))
+    
 # Seuran koostesivu
 @app.route("/clubs/info/<club_id>/", methods=["GET"])
 def clubs_info(club_id):

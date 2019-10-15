@@ -24,5 +24,7 @@ class Sport(Base):
                     "WHERE sport_id = :sport_id AND club_id = :club_id ").params(sport_id=sport_id, club_id=club_id)
 
         result = db.engine.execute(stmt)
-        return result                
+        return result
+
+                      
 
