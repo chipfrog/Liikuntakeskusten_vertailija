@@ -5,28 +5,46 @@ from flask_login import current_user
 from application.clubs.models import Club
 from application.sports.models import Sport
 from application.reviews.models import Review
+from application.auth.models import User
 from application.reviews.forms import ReviewForm
 from application.clubs.forms import CreateClubForm, SearchClubForm
 
 # Tietokannan kaikkien urheiluseurojen järjestäminen eri kriteerein
 @app.route("/clubs", methods=["GET"])
 def clubs_index():
+    if current_user.is_authenticated:
+        users_reviews = User.clubs_reviewed(current_user.id)
+        return render_template("clubs/list.html", clubs = Club.clubs_by_avg_grade(), users_reviews = users_reviews)
+
     return render_template("clubs/list.html", clubs = Club.clubs_by_avg_grade())
 
 @app.route("/clubs/byname", methods=["GET"])
 def clubs_index_by_name():
+    if current_user.is_authenticated:
+        users_reviews = User.clubs_reviewed(current_user.id)
+        return render_template("clubs/list.html", clubs = Club.clubs_by_name(), users_reviews = users_reviews)
+
     return render_template("clubs/list.html", clubs = Club.clubs_by_name())
 
 @app.route("/clubs/bycity", methods=["GET"])
 def clubs_index_by_city():
+    if current_user.is_authenticated:
+        users_reviews = User.clubs_reviewed(current_user.id)
+        return render_template("clubs/list.html", clubs = Club.clubs_by_city(), users_reviews = users_reviews)
     return render_template("clubs/list.html", clubs = Club.clubs_by_city())
 
 @app.route("/clubs/bypricemin", methods=["GET"])
 def clubs_index_by_price_min():
+    if current_user.is_authenticated:
+        users_reviews = User.clubs_reviewed(current_user.id)
+        return render_template("clubs/list.html", clubs = Club.clubs_by_price_min(), users_reviews = users_reviews)
     return render_template("clubs/list.html", clubs = Club.clubs_by_price_min())
 
 @app.route("/clubs/bypricemax", methods=["GET"])
 def clubs_index_by_price_max():
+    if current_user.is_authenticated:
+        users_reviews = User.clubs_reviewed(current_user.id)
+        return render_template("clubs/list.html", clubs = Club.clubs_by_price_max(), users_reviews = users_reviews)
     return render_template("clubs/list.html", clubs = Club.clubs_by_price_max())
 
 # Käyttäjän antamien kriteerien mukaisten urheiluseurojen hakeminen

@@ -1,5 +1,6 @@
 from application import db
 from application.models import Base
+from sqlalchemy import text
 
 class User(Base):
 
@@ -34,6 +35,19 @@ class User(Base):
         return True
 
     def get_role(self):
-        return self.role    
+        return self.role  
+
+    @staticmethod
+    def clubs_reviewed(account_id):
+        stmt = text("SELECT review.club_id, review.id AS review_id FROM review "
+                    "WHERE review.account_id = :account_id").params(account_id=account_id)
+        res = db.engine.execute(stmt)
+        dictionary = {}
+        for row in res:
+            dictionary[row[0]] = row[1]
+
+        return dictionary    
+
+                          
 
                           

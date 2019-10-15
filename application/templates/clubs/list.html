@@ -38,7 +38,11 @@
     </ul>
     {% if current_user.is_authenticated %}
       {% if current_user.role == "user" %}
-        <a href="{{ url_for('reviews_form', club_id=club.club_id) }}" class="btn btn-primary mt-3"/>Review</a>
+        {% if club.club_id in users_reviews %}
+          <a href="{{ url_for('reviews_edit', review_id=users_reviews.get(club.club_id)) }}" class="btn btn-success mt-3">Edit review</a>
+        {% else %}  
+          <a href="{{ url_for('reviews_form', club_id=club.club_id) }}" class="btn btn-primary mt-3"/>Review</a>
+        {% endif %}  
       {% endif %}
     {% endif %}
        

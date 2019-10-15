@@ -28,8 +28,11 @@ class Review(Base):
         stmt = text("SELECT club.id FROM review "
                     "LEFT JOIN club ON review.club_id = club.id "
                     "WHERE review.account_id = :id").params(id = user_id)    
-        result = db.engine.execute(stmt)
-
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
+        
         return result
 
     @staticmethod

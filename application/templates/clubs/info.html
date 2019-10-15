@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="jumbotron">
-    <h1 class="display-4">{{ club.club_name }}</h1>
-    <h3 class="subtitle mb-2 text-muted">{{ club.city }}</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Score:</th>
-          <th scope="col">Price:</th>
-          <th scope="col">Reviews:</th>
-          <th scope="col">Sports:</th>
-        </tr>
-      </thead>
+  <h1 class="display-4">{{ club.club_name }}</h1>
+  <h3 class="subtitle mb-2 text-muted">{{ club.city }}</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Score:</th>
+        <th scope="col">Price:</th>
+        <th scope="col">Reviews:</th>
+        <th scope="col">Sports:</th>
+      </tr>
+    </thead>
       <tr>
         <td>{{ club.average }}/5.0</td>
         <td>{{ club.price }} €/month</td>
@@ -19,7 +19,6 @@
         <td>{{ club.sportscount }}</td>
       </tr>
     </table>
-    
     <br>
     <p>
       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sports" aria-expanded="false" aria-controls="collapseExample">

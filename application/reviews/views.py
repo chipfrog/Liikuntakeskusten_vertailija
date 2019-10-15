@@ -4,6 +4,7 @@ from flask_login import current_user
 from application import app, db, login_required
 from application.reviews.models import Review
 from application.clubs.models import Club
+from application.auth.models import User
 from application.reviews.forms import ReviewForm
 
 @app.route("/reviews", methods=["GET"])
@@ -14,6 +15,12 @@ def reviews_index():
 @app.route("/reviews/new/<club_id>/", methods=["GET"])
 @login_required(role="user")
 def reviews_form(club_id):
+    users_reviews = User.clubs_reviewed(current_user.id)
+    
+    if int(club_id) in users_reviews:
+        message="You have already reviewed this club!"
+        return render_template("error.html", message = message)
+
     return render_template("reviews/new.html", form = ReviewForm(), club_id=club_id)
 
 @app.route("/reviews/<review_id>/", methods=["GET"])
@@ -21,7 +28,8 @@ def reviews_form(club_id):
 def reviews_edit(review_id):
     review = Review.query.get(review_id)
     if not review.account_id == current_user.id:
-        return render_template("error.html")
+        message = "You can't edit someone else's review!"
+        return render_template("error.html", message=message)
     form = ReviewForm(request.form)
     form.grade.data = review.grade
     form.review.data = review.review
@@ -39,7 +47,8 @@ def reviews_update(review_id):
     r = Review.query.get(review_id)
     
     if not r.account_id == current_user.id:
-        return render_template("error.html")
+        message = "You can't edit someone else's review!"
+        return render_template("error.html", message = message)
     
     r.grade = form.grade.data
     r.review = form.review.data
@@ -70,7 +79,8 @@ def reviews_create(club_id):
 def reviews_delete(review_id):
     r = Review.query.get(review_id)
     if not r.account_id == current_user.id:
-        return render_template("error.html")
+        message = "You can't delete someone else's review!"
+        return render_template("error.html", message=message)
 
     db.session().delete(r)
     db.session().commit()
