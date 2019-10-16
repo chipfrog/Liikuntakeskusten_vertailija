@@ -46,7 +46,16 @@ class User(Base):
         for row in res:
             dictionary[row[0]] = row[1]
 
-        return dictionary    
+        return dictionary
+
+    @staticmethod
+    def user_info(account_id):
+        stmt = text("SELECT *, COUNT(review.id) AS reviews FROM account"
+                    "LEFT JOIN review ON review.account_id = account.id "
+                    "WHERE review.account_id = :id").params(id=account_id)
+        res = db.engine.execute(stmt)
+
+        return res                    
 
                           
 

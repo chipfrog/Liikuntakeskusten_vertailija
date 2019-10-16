@@ -2,6 +2,16 @@
 
 {% block body %}
   <h5>My Reviews</h5>
+  <br>
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      {% for n in range(pages) %}
+        <li class="page-item"><a class="page-link" href="{{ url_for('reviews_index', offset=offset_array[n]) }}">{{n}}</a></li>
+      {% endfor %}
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
   {% for review in reviews %}
   <div class="card mb-3" style="width: 25rem;">
     <div class="card-body">

@@ -1,13 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+<h3>Reviews for {{ club.name }}, {{ club.city }}</h3>
+<br>
   {% for review in reviews %}
   <div class="card" style="width: 25rem;">
     <div class="card-header">
       {{ review.username }}
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ review.name }}, {{ review.city }}</h5>
       <h6 class="card-subtitle mb-2">Score: {{ review.grade }}</h6>
       <p class="card-text">{{ review.review }}</p>
     </div>

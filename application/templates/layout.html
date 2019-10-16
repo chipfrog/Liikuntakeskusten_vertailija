@@ -23,7 +23,7 @@
           </li>
           {% if current_user.role == "user" %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('reviews_index') }}">List my reviews</a>
+            <a class="nav-link" href="{{ url_for('reviews_index', offset=0) }}">List my reviews</a>
           </li>
           {% endif %}
           {% if current_user.role == "owner" %}

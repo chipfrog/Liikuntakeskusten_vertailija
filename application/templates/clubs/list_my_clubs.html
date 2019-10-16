@@ -4,7 +4,7 @@
 <h5>My Clubs</h5>
 {% for club in clubs %}
 <br>
-<div class="card bg-light" style="width: 18rem;">
+<div class="card bg-light" style="width: 25rem;">
   <h5 class="card-header card-title">
     {{ club.name }}
   </h5>
@@ -15,9 +15,10 @@
       <li class="list-group-item">Based on: {{ club.reviews }} reviews </li>
       <li class="list-group-item">Price: {{ club.price }} €/month</li>
     </ul>
-    <a href="{{ url_for('add_sport', club_id = club.club_id) }}" class="btn btn-primary mt-3"/>Add Sport</a>
+    <a href="{{ url_for('add_sport', club_id = club.club_id) }}" class="btn btn-primary mt-3"/>Manage sports</a>
     <a href="{{ url_for('clubs_edit', club_id = club.club_id) }}" class="btn btn-success mt-3">Edit</a>
     <a href="{{ url_for('clubs_reviews', club_id = club.club_id) }}" class="btn btn-secondary mt-3">Reviews</a>
+    <a href="{{ url_for('clubs_info', club_id = club.club_id) }}" class="btn btn-secondary mt-3">Info</a>
   </div>
 </div>
 

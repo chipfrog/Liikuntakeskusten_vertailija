@@ -181,7 +181,8 @@ def clubs_delete(club_id):
 # Seuran saamien arvostelujen listaaminen
 @app.route("/clubs/reviews/<club_id>/", methods=["GET"])
 def clubs_reviews(club_id):
-    return render_template("clubs/club_reviews.html", reviews = Review.get_clubs_reviews(club_id))
+    club = Club.query.get(club_id)
+    return render_template("clubs/club_reviews.html", club=club, reviews = Review.get_clubs_reviews(club_id))
     
 # Seuran koostesivu
 @app.route("/clubs/info/<club_id>/", methods=["GET"])

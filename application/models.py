@@ -14,8 +14,8 @@ class Base (db.Model):
     @staticmethod
     def general_info():
         stmt = text("SELECT COUNT(DISTINCT account.id) AS users, COUNT(DISTINCT club.id) AS clubs, "
-                "COUNT(DISTINCT club.city) AS cities, COUNT(DISTINCT sport.id) AS dif_sports "
-                "FROM account, club, sport;")
+                "COUNT(DISTINCT club.city) AS cities "
+                "FROM account, club;")
     
         res = db.engine.execute(stmt)
         result = []

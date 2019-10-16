@@ -27,9 +27,7 @@
       <button class="btn btn-primary ml-2" type="button" data-toggle="collapse" data-target="#contact" aria-expanded="false" aria-controls="collapseExample">
           Contact information
       </button>
-      <button class="btn btn-primary ml-2" type="button" data-toggle="collapse" data-target="#reviews" aria-expanded="false" aria-controls="collapseExample">
-          Reviews
-      </button>
+      <a href="{{ url_for('clubs_reviews', club_id=club.club_id) }}" class="btn btn-primary ml-2">Show reviews</a>
     </p>
     <div class="container" id="group">
       <div class="collapse" id="sports" data-parent="#group">

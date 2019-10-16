@@ -3,11 +3,9 @@
 {% block body %}
 <h2>Welcome!</h2>
 <div>
-  <p>So far we have: </p>
+  <p>Currently we have: </p>
   <ul class="list-group-flush">
-    <li class="list-group-item">Sports clubs: {{ info.clubs }} </li>
-    <li class="list-group-item">Sports: {{info.dif_sports}} </li>
-    <li class="list-group-item">Cities: {{info.cities}} </li>
+    <li class="list-group-item">{{ info.clubs }} sports clubs in {{info.cities}} cities</li>
     <li class="list-group-item">Registered members: {{info.users}}</li>
   </ul>
 </div>

@@ -1,16 +1,23 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import current_user
 
+import math
+from application.pagination import ITEMS_PER_PAGE, offsets
+
 from application import app, db, login_required
 from application.reviews.models import Review
 from application.clubs.models import Club
 from application.auth.models import User
 from application.reviews.forms import ReviewForm
 
-@app.route("/reviews", methods=["GET"])
+@app.route("/reviews/<offset>/", methods=["GET"])
 @login_required(role="user")
-def reviews_index():
-    return render_template("reviews/list.html", reviews = Review.get_users_reviews(current_user.id))
+def reviews_index(offset):
+    pages = math.ceil(Review.query.filter_by(account_id = current_user.id).count()/ITEMS_PER_PAGE)
+    reviews = Review.get_users_reviews(current_user.id, ITEMS_PER_PAGE, offset)
+    offset_array = offsets(pages)
+
+    return render_template("reviews/list.html", reviews=reviews, pages=pages, offset_array=offset_array)
     
 @app.route("/reviews/new/<club_id>/", methods=["GET"])
 @login_required(role="user")
@@ -19,17 +26,21 @@ def reviews_form(club_id):
     
     if int(club_id) in users_reviews:
         message="You have already reviewed this club!"
+        
         return render_template("error.html", message = message)
 
     return render_template("reviews/new.html", form = ReviewForm(), club_id=club_id)
-
-@app.route("/reviews/<review_id>/", methods=["GET"])
+# lisätty /edit/, poista jos hajoaa
+@app.route("/reviews/edit/<review_id>/", methods=["GET"])
 @login_required(role="user")
 def reviews_edit(review_id):
     review = Review.query.get(review_id)
+    
     if not review.account_id == current_user.id:
         message = "You can't edit someone else's review!"
+        
         return render_template("error.html", message=message)
+    
     form = ReviewForm(request.form)
     form.grade.data = review.grade
     form.review.data = review.review
@@ -55,7 +66,7 @@ def reviews_update(review_id):
 
     db.session().commit()   
 
-    return redirect(url_for("reviews_index")) 
+    return redirect(url_for("reviews_index", offset=0)) 
 
 @app.route("/reviews/create/<club_id>/", methods=["POST"])
 @login_required(role="user")
@@ -85,4 +96,4 @@ def reviews_delete(review_id):
     db.session().delete(r)
     db.session().commit()
 
-    return redirect(url_for("reviews_index"))    
+    return redirect(url_for("reviews_index", offset=0))    
