@@ -1,13 +1,13 @@
 
-ITEMS_PER_PAGE = 2
+ITEMS_PER_PAGE = 3
 
 def offsets(pages):
-    offset_start = ITEMS_PER_PAGE
+    offset_increase = ITEMS_PER_PAGE
     offset_array = []
     n = 0
     
     for i in range(pages):
         offset_array.append(n)
-        n += offset_start
+        n += offset_increase
 
     return offset_array    
