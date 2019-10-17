@@ -11,7 +11,7 @@ Toimintoja:
 * Muiden käyttäjien arvostelujen lukeminen
 * Liikuntakeskusten ja lajien lisäys, muokkaus ja poisto
 
-[Tietokantakaavio](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/Tietokantakaavio.png)
+[Tietokannan rakenne](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/tietokanta.md)
 
 [Käyttötapaukset ja SQL-kyselyt](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/kayttotapaukset.md)
 
