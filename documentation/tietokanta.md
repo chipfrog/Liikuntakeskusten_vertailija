@@ -57,4 +57,9 @@ CREATE TABLE sports (
 	FOREIGN KEY(sport_id) REFERENCES sport (id), 
 	FOREIGN KEY(club_id) REFERENCES club (id)
 )
+````
+## Rakenne
+Tietokannan kaikki taulut ovat ensimmäisessä normaalimuodossa, sillä sarakkeet eivät sisällä listoja, sarakkeiden nimet taulun sisällä ovat uniikkeja, sarakkeet eivät muodosta toistuvia ryhmiä, sarakkeiden järjestys ei vaikuta tietokantataulun toimintaan, eikä tauluihin synny kahta identtistä riviä. Taulut ovat myös toisessa ja kolmannessa normaalimuodossa, sillä taulujen sarakkeet ovat funtionaalisesti riippuvaisia taulun pääavaimesta ja mitkään sarakkeet eivät olet transitiivisesti riippuvaisia pääavaimesta.
+
+Sovellus käyttää paikallisesti SQLiteä ja Herokussa PostgreSQL:ää. SQL-kyselyt on muotoiltu sellaisiksi, että ne toimivat molemmissa ympäristöissä.
 
