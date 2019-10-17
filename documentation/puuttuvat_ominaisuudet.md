@@ -1,7 +1,7 @@
 # Ongelmat ja puuttuvat ominaisuudet
 
 ## Puuttuvat ominaisuudet
-* Sivutus on käytössä ainoastaan käyttäjän omien arvostelujen listauksessa. Liikuntaseuroja hakiessa hakutuloksen kokoa voi kuitenkin rajata pienemmäksi _Search_ -ikkunan filtteröinin avulla. 
+* Sivutus on käytössä ainoastaan käyttäjän omien arvostelujen listauksessa. Liikuntaseuroja hakiessa hakutuloksen kokoa voi kuitenkin rajata pienemmäksi _Search_ -ikkunan filtteröinnin avulla. 
 * Käyttäjä ei voi muokata omia tietojaan, eikä poistaa tiliään.
 
 ## Toteutuksen puutteet
