@@ -13,7 +13,7 @@ Toimintoja:
 
 [Tietokantakaavio](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/Tietokantakaavio.png)
 
-[Käyttötapauksia](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/kayttotapaukset.md)
+[Käyttötapaukset ja SQL-kyselyt](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/kayttotapaukset.md)
 
 [Käyttöohje](https://github.com/chipfrog/Liikuntakeskusten_vertailija/blob/master/documentation/manuaali.md)
 
