@@ -97,7 +97,7 @@ Poistetaan lopuksi seura
 ```
 DELETE FROM club WHERE club.id = ?;
 ```
-* Kaikkien seurojen järjestäminen yhden kriteerin perusteella (esimerkissä kaupunkien aakkosjärjestys)
+* Kaikkien seurojen järjestäminen yhden kriteerin perusteella (esimerkissä kaupugin mukaan aakkosjärjestyksessä)
 ```
 SELECT club.id AS club_id, club.name, club.city, club.price, 
 COUNT(review.grade) AS reviews, 
