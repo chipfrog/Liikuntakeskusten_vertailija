@@ -85,6 +85,52 @@ UPDATE club SET date_modified=CURRENT_TIMESTAMP, city=?, tel=? WHERE club.id = ?
 ```
 * Seuran poistaminen tietokannasta; poistetaan aluksi liitostaulusta sports kaikki seuraan liittyvät rivit, eli kytkökset poistettavan seuran ja urheilulajien välillä
 ```
-
+DELETE FROM sports WHERE sports.sport_id = ? AND sports.club_id = ?
 ```
+Haetaan seuraan liittyvät poistettavat arvostelut
+```
+SELECT review.id AS review_id, review.date_created AS review_date_created, review.date_modified AS review_date_modified, review.grade AS review_grade, review.review AS review_review, review.account_id AS review_account_id, review.club_id AS review_club_id 
+FROM review 
+WHERE ? = review.club_id
+```
+Poistetaan lopuksi seura
+```
+DELETE FROM club WHERE club.id = ?
+```
+* Kaikkien seurojen järjestäminen yhden kriteerin perusteella (esimerkissä kaupunkien aakkosjärjestys)
+```
+SELECT club.id AS club_id, club.name, club.city, club.price, 
+COUNT(review.grade) AS reviews, 
+ROUND(AVG(review.grade), 2) AS average FROM club 
+LEFT JOIN review ON review.club_id = club.id 
+GROUP BY club.id 
+ORDER BY club.city ASC;
+```
+* Seurojen hakeminen useiden kriteerien (kaupunki, hinta (min, max), keskiarvo, liikuntalaji) perusteella
+```
+SELECT club.id AS club_id, club.name, club.city, club.price, 
+COUNT(DISTINCT review.grade) as reviews, 
+ROUND(AVG(review.grade), 2) AS average FROM club 
+LEFT JOIN review ON review.club_id = club.id 
+LEFT JOIN sports ON sports.club_id = club.id 
+LEFT JOIN sport ON sport.id = sports.sport_id 
+WHERE (? = '' OR club.city = ?) AND (? = '' OR sport.name = ?) AND (? IS NULL OR club.price >= ?) AND (? IS NULL OR club.price <= ?) 
+GROUP BY club.id 
+HAVING ? IS NULL OR ROUND(AVG(review.grade), 2) >= ? 
+ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), average DESC
+```
+* Yhden seuran koottujen tietojen hakeminen (perustietojen lisäksi arvostelujen määrä, saatavilla olevat liikuntamuodot jne.)
+```
+SELECT club.id AS club_id, club.name AS club_name, club.city, club.address, club.email, club.tel, club.price, 
+COUNT(DISTINCT review.grade) as reviews, 
+ROUND(AVG(review.grade), 2) AS average, 
+COUNT(DISTINCT sports.sport_id) AS sportscount FROM club 
+LEFT JOIN review ON review.club_id = club.id 
+LEFT JOIN sports ON sports.club_id = club.id 
+WHERE club.id = ? 
+GROUP BY club.id
+```
+## Urheilulajit
+* Uuden lajin lisääminen
+
 
