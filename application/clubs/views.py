@@ -166,13 +166,9 @@ def clubs_delete(club_id):
     if not club.account_id == current_user.id:
         return render_template("error.html")
 
-    reviews = Review.query.filter_by(club_id = club_id)
+    # Poistetaan seuraan liittyvät arvostelut
+    db.session().query(Review).filter(Review.club_id == club_id).delete()    
 
-    # Poistaa seuraan liittyvät arvostelut
-    for review in reviews:
-        db.session().delete(review)    
-
-    # Poistaa seuran 
     db.session().delete(club)
     db.session().commit()
 
