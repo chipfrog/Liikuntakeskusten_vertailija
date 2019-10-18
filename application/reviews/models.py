@@ -28,19 +28,7 @@ class Review(Base):
 
         return result
 
-    @staticmethod
-    def get_users_review_ids(user_id):
-        stmt = text("SELECT club.id FROM review "
-                    "LEFT JOIN club ON review.club_id = club.id "
-                    "WHERE review.account_id = :id").params(id = user_id)    
-        res = db.engine.execute(stmt)
-        result = []
-        for row in res:
-            result.append(row)
-        
-        return result
-
-    @staticmethod
+   @staticmethod
     def get_clubs_reviews(club_id):
         stmt = text("SELECT review.grade, review.review, review.date_modified AS review_modified, account.username FROM review "
                     "INNER JOIN club ON review.club_id = club.id "
