@@ -8,6 +8,7 @@
 
 ## Toteutuksen puutteet
 * HTML-koodissa hieman copypastea jäljellä, josta pääsisi eroon perittävillä luokilla
+* Ulkoasu paikoin hieman raakile, esim. painikkeet eivät täysin linjassa.
 * SQL-kyselyiden tehokkuuden optimointia voisi parantaa. Esim. liikuntaseurojen listauksessa sovellus hakee kaikki tietokannann seurat ellei niitä rajaa erikseen hakuikkunan kautta erilaisin filtterein. Ongelmasta pääsisi eroon sivutuksen avulla. 
 * Sport-tauluun periytyvät date_created ja date_modified -sarakkeet sovelluksen käytön kannalta turhia. 
 * Jatkoa ajatellen liikuntakeskuksen jäsenmaksu olisi ollut hyvä eriyttää omaksi taulukseen, sillä seuroilla voi olla erilaisia jäsenyysvaihtoehtoja. Tällöin tosin myös saatavilla olevat liikuntalajit saattaisivat olla riippuvaisia jäsenyystasosta (hinnasta) ja tietokanta vaatisi lisämuokkausta.
