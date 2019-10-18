@@ -28,7 +28,7 @@ class Review(Base):
 
         return result
 
-   @staticmethod
+    @staticmethod
     def get_clubs_reviews(club_id):
         stmt = text("SELECT review.grade, review.review, review.date_modified AS review_modified, account.username FROM review "
                     "INNER JOIN club ON review.club_id = club.id "
