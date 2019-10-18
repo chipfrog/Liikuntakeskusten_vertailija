@@ -32,7 +32,7 @@ class Club(Base):
 
     @staticmethod
     def clubs_by_avg_grade():
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, " 
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.id) AS reviews, " 
                     "ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
@@ -46,7 +46,7 @@ class Club(Base):
 
     @staticmethod
     def clubs_by_name():
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, "
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.id) AS reviews, "
                     "ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
@@ -60,7 +60,7 @@ class Club(Base):
 
     @staticmethod
     def clubs_by_city():
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, "
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.id) AS reviews, "
                     "ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
@@ -74,7 +74,7 @@ class Club(Base):
 
     @staticmethod
     def clubs_by_price_min():
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, "
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.id) AS reviews, "
                     "ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
@@ -88,7 +88,7 @@ class Club(Base):
 
     @staticmethod
     def clubs_by_price_max():
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) AS reviews, "
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.id) AS reviews, "
                     "ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "GROUP BY club.id "
