@@ -4,6 +4,7 @@
 * Sivutus on käytössä ainoastaan käyttäjän omien arvostelujen listauksessa. Liikuntaseuroja hakiessa hakutuloksen kokoa voi kuitenkin rajata pienemmäksi _Search_ -ikkunan filtteröinnin avulla. 
 * Käyttäjä ei voi muokata omia tietojaan, eikä poistaa tiliään.
 * Liikuntakeskusten rajaaminen on tällä hetkellä rajattu yhteen liikuntalajiin. Haku voisi olla dynaaminen, jossa luodaan lista halutuista liikuntalajeista yhden lajin sijaan.
+* Uutta käyttäjää luodessa salasanaa varten voisi olla toinen kenttä, joka varmistaa, että salasana tulee kirjoitettua oikein.
 
 ## Toteutuksen puutteet
 * HTML-koodissa hieman copypastea jäljellä, josta pääsisi eroon perittävillä luokilla
