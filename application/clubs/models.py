@@ -103,7 +103,7 @@ class Club(Base):
     @staticmethod
     def filter_clubs(city, score, price_min, price_max, sport):
         stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, "
-                    "COUNT(DISTINCT review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
+                    "COUNT(DISTINCT review.id) as reviews, ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "LEFT JOIN sports ON sports.club_id = club.id "
                     "LEFT JOIN sport ON sport.id = sports.sport_id "
@@ -124,7 +124,7 @@ class Club(Base):
 
     @staticmethod
     def my_clubs_by_avg_grade(account_id):
-        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.grade) as reviews, ROUND(AVG(review.grade), 2) AS average "
+        stmt = text("SELECT club.id AS club_id, club.name, club.city, club.price, COUNT(review.id) as reviews, ROUND(AVG(review.grade), 2) AS average "
                     "FROM club LEFT JOIN review ON review.club_id = club.id "
                     "WHERE club.account_id = :id "
                     "GROUP BY club.id "
@@ -139,7 +139,7 @@ class Club(Base):
     @staticmethod
     def get_club_info(club_id):
         stmt = text("SELECT club.id AS club_id, club.name AS club_name, club.city, club.address, club.email, club.tel, club.price, "
-                    "COUNT(DISTINCT review.grade) as reviews, " 
+                    "COUNT(DISTINCT review.id) as reviews, " 
                     "ROUND(AVG(review.grade), 2) AS average, "
                     "COUNT(DISTINCT sports.sport_id) AS sportscount "
                     "FROM club LEFT JOIN review ON review.club_id = club.id LEFT JOIN sports ON sports.club_id = club.id "
