@@ -122,7 +122,7 @@ DELETE FROM club WHERE club.id = ?;
 * Kaikkien seurojen järjestäminen yhden kriteerin perusteella (esimerkissä kaupugin mukaan aakkosjärjestyksessä)
 ```
 SELECT club.id AS club_id, club.name, club.city, club.price, 
-COUNT(review.grade) AS reviews, 
+COUNT(review.id) AS reviews, 
 ROUND(AVG(review.grade), 2) AS average FROM club 
 LEFT JOIN review ON review.club_id = club.id 
 GROUP BY club.id 
@@ -131,7 +131,7 @@ ORDER BY club.city ASC;
 * Seurojen hakeminen useiden kriteerien (kaupunki, hinta (min, max), keskiarvo, liikuntalaji) perusteella
 ```
 SELECT club.id AS club_id, club.name, club.city, club.price, 
-COUNT(DISTINCT review.grade) as reviews, 
+COUNT(DISTINCT review.id) as reviews, 
 ROUND(AVG(review.grade), 2) AS average FROM club 
 LEFT JOIN review ON review.club_id = club.id 
 LEFT JOIN sports ON sports.club_id = club.id 
@@ -144,7 +144,7 @@ ORDER BY (CASE WHEN ROUND(AVG(review.grade), 2) is NULL THEN 1 ELSE 0 END), aver
 * Yhden seuran koottujen tietojen hakeminen (perustietojen lisäksi arvostelujen määrä, saatavilla olevat liikuntamuodot jne.)
 ```
 SELECT club.id AS club_id, club.name AS club_name, club.city, club.address, club.email, club.tel, club.price, 
-COUNT(DISTINCT review.grade) as reviews, 
+COUNT(DISTINCT review.id) as reviews, 
 ROUND(AVG(review.grade), 2) AS average, 
 COUNT(DISTINCT sports.sport_id) AS sportscount FROM club 
 LEFT JOIN review ON review.club_id = club.id 
