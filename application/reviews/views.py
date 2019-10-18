@@ -13,7 +13,10 @@ from application.reviews.forms import ReviewForm
 @app.route("/reviews/<offset>/", methods=["GET"])
 @login_required(role="user")
 def reviews_index(offset):
+    # Lasketaan montako sivua arvosteluja varten tarvitaan
     pages = math.ceil(Review.query.filter_by(account_id = current_user.id).count()/ITEMS_PER_PAGE)
+    
+    # Yhtä sivua varten haettavat arvostelut
     reviews = Review.get_users_reviews(current_user.id, ITEMS_PER_PAGE, offset)
     offset_array = offsets(pages)
 
@@ -24,18 +27,20 @@ def reviews_index(offset):
 def reviews_form(club_id):
     users_reviews = User.clubs_reviewed(current_user.id)
     
+    # Varmistetaan ettei käyttäjä ole jo arvosttelut seuraa
     if int(club_id) in users_reviews:
         message="You have already reviewed this club!"
         
         return render_template("error.html", message = message)
 
     return render_template("reviews/new.html", form = ReviewForm(), club_id=club_id)
-# lisätty /edit/, poista jos hajoaa
+
 @app.route("/reviews/edit/<review_id>/", methods=["GET"])
 @login_required(role="user")
 def reviews_edit(review_id):
     review = Review.query.get(review_id)
     
+    # Varmistetaan, että kirjautunut käyttäjä on myös arvostelun kirjoittaja
     if not review.account_id == current_user.id:
         message = "You can't edit someone else's review!"
         
