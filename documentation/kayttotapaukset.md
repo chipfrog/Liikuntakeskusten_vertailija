@@ -29,8 +29,30 @@ tyytyväisyyden keskukseen.
 * Omistajana voin poistaa hallinnoimani liikuntakeskuksen, jos se lopettaa toimintansa. Poistamisen yhteydessä poistuvat myös keskukseen liittyvät arvostelut.
 
 # SQL-kyselyt
+## Etusivun yhteenveto
+Ilmoitetaan montako liikuntaseuraa, kaupunkia ja käyttäjää tietokannassa on
+```
+SELECT COUNT(DISTINCT account.id) AS users, 
+COUNT(DISTINCT club.id) AS clubs, 
+COUNT(DISTINCT club.city) AS cities 
+FROM account, club;
+```
+
 ## Käyttäjäprofiilit
 * Uuden käyttäjän lisääminen tietokantaan
+
+Tarkistetaan, että syötetty username ja sähköposti ovat uniikkeja.
+```
+SELECT account.id AS account_id, account.date_created AS account_date_created, account.date_modified AS account_date_modified, account.name AS account_name, account.email AS account_email, account.username AS account_username, account.password AS account_password, account.role AS account_role 
+FROM account 
+WHERE account.username = ?
+
+SELECT account.id AS account_id, account.date_created AS account_date_created, account.date_modified AS account_date_modified, account.name AS account_name, account.email AS account_email, account.username AS account_username, account.password AS account_password, account.role AS account_role 
+FROM account 
+WHERE account.email = ?
+
+```
+Lisätään uusi käyttäjä tietokantaan.
 ```
 INSERT INTO account (date_created, date_modified, name, email, username, password, role) 
 VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?);
